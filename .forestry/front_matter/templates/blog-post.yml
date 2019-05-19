@@ -22,5 +22,9 @@ fields:
     time_format: 
     display_utc: false
   hidden: false
+- name: tags
+  type: tag_list
+  default: []
+  label: Tags
 pages:
 - content/about.md
