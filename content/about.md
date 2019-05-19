@@ -1,7 +1,10 @@
 ---
 title: About
 subtitle: ''
-publishdate: 2019-05-19T00:00:00+02:00
+publishdate: '2019-05-18T22:00:00.000+00:00'
+featured_image: ''
+date: 2019-05-19T00:00:00+02:00
+tags: []
 draft: true
 
 ---
@@ -11,4 +14,4 @@ Being part of a small team for many years has made me gain experience in the who
 
 I've also worked as a consultant/contractor for a couple of big companies where I was part of the architecture/development team, doing performance analysis, menthoring, architecture revisions etc. 
 
-Even though my main job now usually involves Java, I'm not tied to any language and I've also done real work with PL/SQL, Groovy, Kotlin and my own experiments with Scala, JRuby Rust and many others. 
+Even though my main job now usually involves Java, I'm not tied to any language and I've also done real work with PL/SQL, Groovy, Kotlin and my own experiments with Scala, JRuby Rust and many others.
