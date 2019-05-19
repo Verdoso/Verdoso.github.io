@@ -28,4 +28,5 @@ fields:
   default: []
   label: Tags
 pages:
+- posts/spring-boot-mybatis-multiple-datasources-and-multiple-mappers-all-together-holding-hands.md
 - content/about.md
