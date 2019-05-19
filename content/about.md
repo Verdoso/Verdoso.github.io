@@ -1,7 +1,6 @@
 ---
 title: About
 subtitle: ''
-publishdate: '2019-05-18T22:00:00.000+00:00'
 featured_image: ''
 date: 2019-05-19T00:00:00+02:00
 tags: []
