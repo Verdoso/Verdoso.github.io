@@ -22,9 +22,15 @@ fields:
     time_format: 
     display_utc: false
   hidden: false
+  default: now
 - name: tags
   type: tag_list
   default: []
   label: Tags
+- name: header_image
+  type: file
+  config:
+    maxSize: 250
+  label: Header image
 pages:
 - content/about.md
