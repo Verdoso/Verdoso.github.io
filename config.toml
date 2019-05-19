@@ -1,6 +1,6 @@
 baseURL = "https://www.greeneyed.org/"
 languageCode = "en-us"
-title = "GreenEyed's blog"
+title = "GreenEyed's"
 theme = "ananke"
 
 MetaDataFormat = "yaml"
