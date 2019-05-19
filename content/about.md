@@ -2,9 +2,8 @@
 title: About
 subtitle: ''
 featured_image: ''
-date: 2019-05-19T00:00:00+02:00
+date: 2019-05-18T22:00:00.000+00:00
 tags: []
-draft: true
 
 ---
 I've been developing software professionaly for many years, specially around the Java echosystem. 
