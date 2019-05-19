@@ -2,11 +2,11 @@
 label: Blog post
 hide_body: false
 fields:
-- name: header_image
+- name: featured_image
   type: file
   config:
     maxSize: 250
-  label: Header image
+  label: Featured image
 - name: title
   type: text
   config:
@@ -17,7 +17,7 @@ fields:
   config:
     required: false
   label: Subtitle
-- name: publishdate
+- name: date
   type: datetime
   label: PublishDate
   description: ''
