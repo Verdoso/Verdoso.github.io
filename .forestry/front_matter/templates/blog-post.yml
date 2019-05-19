@@ -12,11 +12,6 @@ fields:
   config:
     required: false
   label: Title
-- name: subtitle
-  type: text
-  config:
-    required: false
-  label: Subtitle
 - name: date
   type: datetime
   label: PublishDate
