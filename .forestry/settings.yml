@@ -8,11 +8,6 @@ sections:
   path: content
   label: Pages
   create: all
-  match: "*"
-- type: directory
-  path: posts
-  label: Posts
-  create: documents
   match: "**/*"
 upload_dir: static/uploads
 public_path: "/uploads"
