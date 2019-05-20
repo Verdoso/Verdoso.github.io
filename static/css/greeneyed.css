@@ -3,6 +3,15 @@ h1.f-subheadline-l {
     margin-top: 0;
 }
 
+ul.pa0 li {
+    display: inline-block;
+}
+
+ul.pa0 li .pv2 {
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+}
+
 @media screen and (min-width: 60em) {
     .measure-wide {
         max-width: 40em;
