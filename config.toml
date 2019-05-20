@@ -9,6 +9,7 @@ SectionPagesMenu = "main"
 Paginate = 15 # this is set low for demonstrating with dummy content. Set to a higher number
 googleAnalytics = ""
 enableRobotsTXT = true
+disqusShortname = "greeneyed"
 
 [sitemap]
   changefreq = "monthly"
@@ -28,6 +29,8 @@ enableRobotsTXT = true
   mastodon = ""
   # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
   background_color_class = "bg-dark-green"
-  featured_image = "/images/gohugo-default-sample-hero-image.jpg"
+  featured_image = "/images/bellagio.jpg"
   recent_posts_number = 10
+  show_reading_time = true
+  disqusShortname = "greeneyed"
 
