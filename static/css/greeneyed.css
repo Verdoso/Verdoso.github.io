@@ -1,0 +1,22 @@
+h1.f-subheadline-l {
+    color: #F4F4F4;
+    margin-top: 0;
+}
+
+@media screen and (min-width: 60em) {
+    .measure-wide {
+        max-width: 40em;
+    }
+
+    header .pb6-l {
+        padding-bottom: 1em;
+    }
+
+    article .tc-l {
+        text-align: inherit;
+    }    
+
+    .w-two-thirds-l {
+        width: 80%;
+    }    
+}
