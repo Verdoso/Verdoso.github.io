@@ -36,15 +36,11 @@ All in all, that’s how the filter might look like:
 
 You can then configure your logs with a pattern like this one(in this example using Log4j2) where we add the MDC key (_Slf4jMDCFilter.UUID_ in this case)
 
-![](https://cdn-images-1.medium.com/max/800/1*zQL4kkZT1qNQR7JXMiOTiA.png)
-
-Log4j2 pattern
+![](/uploads/log4j_pattern.png "Log4j2 pattern")
 
 And your log messages will look something like these, where the UUID for the request is the second field after the date:
 
-![](https://cdn-images-1.medium.com/max/800/1*CnHU89EosiJoIdkoR2XOwQ.png)
-
-Log messages with a unique ID added
+![Log messages with a unique ID added](/uploads/log_messages.png "Log messages with a unique ID added")
 
 Now imagine you launch a battery of tests against your service using [Postman collection runner](https://www.getpostman.com/docs/postman/collection_runs/starting_a_collection_run), for example. If you wanted to identify which log lines correspond to each request, you would just need to check the headers of the response and look for the one including the ID (_Response_Token_ in this case).
 
