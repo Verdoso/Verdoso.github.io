@@ -7,7 +7,6 @@ tags:
 - Web development
 featured_image: ''
 title: 'Spring Boot: Setting a unique ID per request'
-draft: true
 
 ---
 [Spring Boot](https://projects.spring.io/spring-boot/) web applications, like many others unless you go for the mono-threaded option (yuck!) serve requests concurrently. That brings many advantages, but one of the drawbacks that come with it is that it makes harder to trace what each request is doing, as it is doing it while other requests are doing other, often similar, things. That hurts logging information badly, as the messages generated for one request can easily be intermingled with other messages generated for other requests.
