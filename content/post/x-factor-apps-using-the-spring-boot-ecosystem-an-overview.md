@@ -7,7 +7,6 @@ tags:
 - Development
 featured_image: ''
 title: X-Factor Apps using the Spring Boot ecosystem, an overview
-draft: true
 
 ---
 ### Summary
