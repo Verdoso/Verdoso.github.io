@@ -48,7 +48,7 @@ Now imagine you launch a battery of tests against your service using [Postman co
 
 and with that ID you can browse the logs and identify exactly which are the log messages that correspond exactly to that request:
 
-![](https://cdn-images-1.medium.com/max/800/1*PWPbub-cvt4UqK1swk0ECA.png)
+![](/uploads/log_lines.png)
 
 Log lines identified by the corresponding ID
 
@@ -56,21 +56,15 @@ The request header can also be pretty useful if you are doing some test requests
 
 For example, you could configure a request header like this (remember that by default we set no request header):
 
-![](https://cdn-images-1.medium.com/max/800/1*TdzPX_8J0rDyzx-1Wcc3dg.png)
-
-Setting a request header to check for a correlation ID
+![Setting a request header to check for a correlation ID](/uploads/request_header.png "Setting a request header to check for a correlation ID")
 
 set the request header like this in Postman:
 
-![](https://cdn-images-1.medium.com/max/800/1*1sVjR-vshuQqiX1Q8dR2uA.png)
-
-Setting the ID in a request header
+![Setting the ID in a request header](/uploads/setting_id_request_header.png "Setting the ID in a request header")
 
 and your log messages would look something like this:
 
-![](https://cdn-images-1.medium.com/max/800/1*CHIZOBt98QDbgcsiYh7x8w.png)
-
-Setting a fixed correlation ID for testing
+![Setting a fixed correlation ID for testing](/uploads/correlation.png "Setting a fixed correlation ID for testing")
 
 The ID is also a perfect candidate to parse in centralised logging platforms ([Elastic Stack,](https://www.elastic.co/elk-stack) [Graylog](https://www.graylog.org/)…) so you can filter log messages directly for that field.
 
