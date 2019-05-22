@@ -1,5 +1,5 @@
 ---
-date: 2017-05-23T00:00:00+02:00
+date: 2017-05-22T22:00:00.000+00:00
 tags:
 - Java
 - Spring Boot
@@ -7,7 +7,7 @@ tags:
 featured_image: ''
 title: Spring Boot, MyBatis, multiple datasources and multiple mappers, all together
   holding hands
-draft: true
+
 ---
 One of the issues with Spring Boot that I have come across a couple of times and that are usually a bit painful to solve is how to configure multiple datasources and mappers with MyBatis. I have always had to browse the web, check different sources and try different examples while fighting unclear error messages until I get it right. And then the next time configuration has changed in some subtle way either in MyBatis or Spring Boot and it’s all over again. Duh! So, now that I found another working solution, I wanted to share it in case it can help other developers going through the same pain. In this case, I’ll show how it’s done using a pure Java configuration approach instead of XML.
 
