@@ -26,13 +26,13 @@ Finally, let’s go the extra mile. Sometimes, if you are using proxy-gateway se
 
 Ok, now let’s do that in Spring Boot: We’ll need a configuration class that creates a FilterRegistrationBean with our servlet. We’ll also use Spring Boot’s great configuration capabilities and let the user configure the names of the headers involved and the key of the MDC, while providing some defaults. In the end, the configuration class might look something like this:
 
-Spring Boot Filter configuration
+{{< gist Verdoso 7e11004f0ee73efc6e9b1ce3527a6022>}}
 
 We can then create the filter itself. We need to verify if we received a correlation ID in the request header, if specified, or else create a new ID. Set the ID with the right key at the MDC and add the response header, if necessary, and make sure we are cleaning up the MDC key correctly once the request is done.
 
 All in all, that’s how the filter might look like:
 
-Unique ID filter
+{{< gist Verdoso 1d609e6d621a9cc4cb1bff6bcbf65ef9>}}
 
 You can then configure your logs with a pattern like this one(in this example using Log4j2) where we add the MDC key (_Slf4jMDCFilter.UUID_ in this case)
 
