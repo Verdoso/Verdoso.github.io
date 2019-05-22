@@ -6,7 +6,6 @@ tags:
 - Caching
 featured_image: ''
 title: Configuring Multiple TTL Caches in Spring Boot dinamically
-draft: true
 
 ---
 Recently, I started using Spring caching in my Spring Boot applications and I came across a very nice entry in Daniel Olszewski’s blog ([MULTIPLE TTL CACHES IN SPRING BOOT](http://dolszewski.com/spring/multiple-ttl-caches-in-spring-boot/)) that indeed explains how to set up multiple caches in Spring Boot with a specified TTL (Time To Live) setting and is really worth reading it as it even explains how to test the functionality. So, if you have not read it already, I invite you to do go ahead and do it now, as I’ll build on top of that. Don’t worry, I’ll wait for you :X
