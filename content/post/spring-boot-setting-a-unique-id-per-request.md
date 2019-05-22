@@ -44,7 +44,7 @@ And your log messages will look something like these, where the UUID for the req
 
 Now imagine you launch a battery of tests against your service using [Postman collection runner](https://www.getpostman.com/docs/postman/collection_runs/starting_a_collection_run), for example. If you wanted to identify which log lines correspond to each request, you would just need to check the headers of the response and look for the one including the ID (_Response_Token_ in this case).
 
-![](https://cdn-images-1.medium.com/max/800/1*n9Iys1RgbuMXDG3v_Cm_5Q.png)
+![](/uploads/postman.png)
 
 and with that ID you can browse the logs and identify exactly which are the log messages that correspond exactly to that request:
 
