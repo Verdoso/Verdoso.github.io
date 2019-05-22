@@ -28,5 +28,4 @@ fields:
   default: []
   label: Tags
 pages:
-- posts/spring-boot-mybatis-multiple-datasources.md
-- content/about.md
+- content/post/x-factor-apps-using-the-spring-boot-ecosystem-an-overview.md
