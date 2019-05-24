@@ -1,5 +1,5 @@
 ---
-date: 2019-05-24T18:13:25+02:00
+date: 2018-06-08T18:13:25+02:00
 tags:
 - Java
 - Collection
@@ -7,7 +7,6 @@ tags:
 - Jira
 featured_image: ''
 title: 'Real life Java: Aggregating nested collection with streams'
-draft: true
 
 ---
 Most of the times I had used the “relatively new” streams in Java, it was for straight-forward tasks with operations on one stream. I sometimes use more sophisticated collectors, like [Collectors.toMap](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html#toMap-java.util.function.Function-java.util.function.Function-), but recently I had to use more complicated stuff to solve a real problem and I thought it might interesting writing about it, as the examples one usually reads about are synthetic and lack the focus of solving a real problem.
