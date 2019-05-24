@@ -14,33 +14,33 @@ The technical documentation is quite complete, but I found the samples and usabi
 
 If you want to convert numbers into their text ordinals counterparts in Java, the first step would be to include the [ICU4J ](http://icu-project.org/apiref/icu4j/)library in your project, for example using.
 
-ICU4J Maven dependency
+{{< gist Verdoso 2cfb89121fd898b65e647ba119f73dcd>}}
 
 Once we have done that, there are several ways you can display a message with [ICU4J](http://icu-project.org/apiref/icu4j/), but when you are dealing with ordinals, you have to become familiar with the [RuleBasedNumberFormat](http://icu-project.org/apiref/icu4j/com/ibm/icu/text/RuleBasedNumberFormat.html) concept. A [RuleBasedNumberFormat](http://icu-project.org/apiref/icu4j/com/ibm/icu/text/RuleBasedNumberFormat.html) uses a given locale and a format specification (duration, numbering, ordinal or spellout) to format numbers using a specified rule. For example, 1 in English as a spelled out ordinal is “first”, as a spelled out cardinal is “one”, as duration “with words” is “1 second”. In our case, we want the spelled out ordinal (“_%spellout-ordinal_” rule), so we can test it like this:
 
-RuleBasedNumberFormat using English locale
+{{< gist Verdoso a4b20b23590834f3251b4a4a13116893>}}
 
 So far, so good, but how about doing the same with other languages, like Spanish? Well, if we try we’ll get a runtime error because with the Spanish locale we don’t get the same rules as with the English one.
 
-Using the same rule with Spanish locale throws a RuntimeException
+{{< gist Verdoso 440f98ded5e7723444f2f116f106d70e>}}
 
 So, how do you find out what rules are in there for a given locale? Well, you can open the jar files and browse some binary files, as I did first :O, or you can use the API and find it the easy way, with this code.
 
-Discovering the rule names for the Spanish locale
+{{< gist Verdoso 0157f165a2231ddc527c3e573fc7df59>}}
 
 After executing this code, we can see the problem: Spanish has genders so we cannot use the same rule for masculine and feminine nouns. On top of that, the masculine form is different when you use it as a noun or an adjective. In our sample sentence, “This is the **_first _**report…”, the noun, report, in Spanish is masculine and the ordinal is used as an adjective, so we’ll need to use the rule “%spellout-ordinal-masculine-adjective”. Let’s try again:
 
-RuleBasedNumberFormat using Spanish locale
+{{< gist Verdoso 458eadb2f2d4b08802b0f6d2aa5a4bc5>}}
 
 Great, that works. But the code is kind of clumsy and we would have to change the rule depending on the context… there must be an easy way, right? Well, I was about to try to extend the [MessageFormat](https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html) class to handle this use case more easily when I realized IC4J already does that, and their class is named… [MessageFormat](http://icu-project.org/apiref/icu4j/com/ibm/icu/text/MessageFormat.html), oh yeah.
 
 In this case, when we create the [MessageFormat](http://icu-project.org/apiref/icu4j/com/ibm/icu/text/MessageFormat.html) instance, we have to choose which locale will be used along with it, and then we can provide the rule as part of the patterns for the parameters. For example, we can create two different [MessageFormat](http://icu-project.org/apiref/icu4j/com/ibm/icu/text/MessageFormat.html) instances with the messages in English and Spanish, and tell them, in the patterns, to use the appropriate rule in each case. After that, a call to MessageFormat.format, passing the number as a parameter, will return the correct text.
 
-Formatting localized ordinals with com.ibm.icu.text.MessageFormat
+{{< gist Verdoso 9eb2f5eba4ac7ce422a1087145ea7057>}}
 
 Let’s test if we can adapt the messages easily. In some contexts, we could translate the English word “report” for the Spanish word “memoria” instead of “informe”. “Memoria” is feminine, so we just have to change the rule specified in the pattern and…
 
-Formatting a Spanish localised message for a feminine adjective
+{{< gist Verdoso 4e684fc2edc8738ce9cff532cdab7fd5>}}
 
 Voilà!
 
