@@ -28,6 +28,7 @@ fields:
   default: []
   label: Tags
 pages:
+- content/post/clustered-spring-boot-services-with-hazelcast-consul-stateful-stateless.md
 - content/post/easily-connecting-your-spring-boot-applications-to-the-elastic-stack-with-log4j2.md
 - content/post/real-life-java-from-numbers-to-localized-text-ordinals-using-icu4j.md
 - content/post/real-life-java-aggregating-nested-collection-with-streams.md
