@@ -7,7 +7,6 @@ tags:
 - Deployment Pipelines
 featured_image: ''
 title: 'SpringBoot, Maven, Jenkins & Git: How to identify your release automagically'
-draft: true
 
 ---
 One of the issues that usually comes up when you have an application up & running is finding out what’s deployed in the different servers so you can know if what you committed in the source code repository is deployed in those releases or not.
