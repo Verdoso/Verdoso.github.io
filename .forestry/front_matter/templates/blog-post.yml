@@ -28,6 +28,7 @@ fields:
   default: []
   label: Tags
 pages:
+- content/post/quick-tip-elasticsearch-consul-health-check-basic-authentication.md
 - content/post/spring-boot-setting-a-unique-id-per-request.md
 - content/post/configuring-multiple-ttl-caches-in-spring-boot-dinamically.md
 - content/post/x-factor-apps-using-the-spring-boot-ecosystem-an-overview.md
