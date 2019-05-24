@@ -6,7 +6,6 @@ tags:
 - Log4j2
 featured_image: ''
 title: Easily connecting your Spring Boot applications to the Elastic Stack with Log4j2
-draft: true
 
 ---
 **N**ow that logging aggregators are becoming ubiquitous, a common issue that we, developers, have to face is how to connect the log output of our applications to those tools. Some of the issues that we encounter during that process are:
