@@ -23,11 +23,11 @@ As a brief summary, these are the things we want to facilitate:
 
 One of the easiest ways is to include the [maven git commit id plugin](https://github.com/ktoso/maven-git-commit-id-plugin) , something you can do easily, just by adding this, for example, to your pom.xml file
 
-{{< gist Verdoso fef3719708380e7cd86286a958016e10}}
+{{< gist Verdoso fef3719708380e7cd86286a958016e10>}}
 
 After that, enable the [Spring Boot info actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-application-info) by adding the actuator dependency
 
-{{< gist Verdoso a6fcee347ad297e6ab5c9fad61ee317e}}
+{{< gist Verdoso a6fcee347ad297e6ab5c9fad61ee317e>}}
 
 After that and after creating a release, you should be able to identify what’s included in the deployed release by looking at your.app.com/info (or whatever custom path you configured your actuator to answer at).
 
@@ -43,17 +43,17 @@ Remember that In order to be able to perform the scm commands, you have to set u
 
 For example, you could have something like that in your pom.xml
 
-{{< gist Verdoso 7ebfcd323c9c47eb6b3d45bee59de44c}}
+{{< gist Verdoso 7ebfcd323c9c47eb6b3d45bee59de44c>}}
 
 And something like this in your settings.xml
 
-{{< gist Verdoso 109b90654ff8fe21ea570b3431770b35}}
+{{< gist Verdoso 109b90654ff8fe21ea570b3431770b35>}}
 
 Check other options at the instructions about [Bootstrapping a Project Using a POM](https://maven.apache.org/scm/maven-scm-plugin/examples/bootstrapping-with-pom.html) of the [Maven SCM Plugin](https://maven.apache.org/scm/maven-scm-plugin/).
 
 All in all, one can add something like the following snippets to your project [Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/):
 
-{{< gist Verdoso 04f83b21808174455faf08dab16c389b}}
+{{< gist Verdoso 04f83b21808174455faf08dab16c389b>}}
 
 In them, we define a parameter (see [Handling parameters](https://jenkins.io/doc/book/pipeline/jenkinsfile/#handling-parameters) so we can toggle the feature on/off and then a [Stage](https://jenkins.io/doc/pipeline/steps/pipeline-stage-step/) with some steps that that set the proper version, deploy the release to the artifacts repository and then tags the release with the build number at the source code repository.
 
