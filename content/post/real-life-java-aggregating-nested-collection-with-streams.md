@@ -32,13 +32,9 @@ The **user report** is the simplest, as the user attribute is at the report leve
 
 {{< gist Verdoso 9339112dc719ca83ab832b654e00763e>}}
 
-Generating the user report (total time reported by each user)
-
 The **component and version reports** are a bit more complicated, as they are attributes at the _Issue_ level, but we want to aggregate the time at the _Report_level. So, in this case, we have to group first and then for the values of the grouping (a list of issues), transform them into a stream of issues and then aggregate them. Fortunately, there is a Collectors.groupingBy function that allows you to operate further on the values associated to each key. The final code looks like this:
 
 {{< gist Verdoso 386cf92c641948948f72789c3c80cf2e>}}
-
-Generating the version and component reports (total time reported into each component/version)
 
 Unfortunately, the Collector that we need to convert the collection of issues into a stream of reports ([Collectors.flatMapping](https://docs.oracle.com/javase/9/docs/api/java/util/stream/Collectors.html#flatMapping-java.util.function.Function-java.util.stream.Collector-)) was not present in Java until version 9, but a bit of [StackOverflow](https://stackoverflow.com/questions/41878646/flat-mapping-collector-for-property-of-a-class-using-groupingby) and [s](https://stackoverflow.com/questions/41878646/flat-mapping-collector-for-property-of-a-class-using-groupingby)ome smart extension and voilà, you can backport it to Java 8:
 
