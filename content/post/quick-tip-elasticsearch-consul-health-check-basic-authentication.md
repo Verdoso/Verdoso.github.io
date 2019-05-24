@@ -6,7 +6,6 @@ tags:
 - DevOps
 featured_image: ''
 title: 'Quick tip: Elasticsearch + Consul + health check + basic authentication'
-draft: true
 
 ---
 Recently, I’ve been installing the “[Elastic Stack](https://www.elastic.co/products)”, previously known as ELK, and one of the steps took me a while to figure it out, due to outdated documentation and missing pieces in the examples for the specific syntax that you need to get right, so here it comes:
