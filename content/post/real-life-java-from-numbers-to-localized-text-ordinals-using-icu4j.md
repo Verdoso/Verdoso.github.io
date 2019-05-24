@@ -5,7 +5,6 @@ tags:
 - Java
 featured_image: "/uploads/flags.jpg"
 title: 'Real life Java: From numbers to localized text ordinals using ICU4J'
-draft: true
 
 ---
 Recently, I had to build a Java application that reads a series of data and puts “human readable” labels on it. Some of the texts the application has to generate use ordinals like “This is the **_first _**report…” and they have to be displayed in three different languages, so instead of using a non-scalable solution (if/else, switch), I decided to generate the messages from the numeric data using something more flexible. A web search turned up [ICU4J](http://icu-project.org/apiref/icu4j/)(from the project International Components for Unicode) as a common solution, so I decided to give it a go.
