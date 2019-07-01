@@ -28,6 +28,7 @@ fields:
   default: []
   label: Tags
 pages:
+- content/post/java-trick.md
 - content/post/querying-in-batches-using-mybatis.md
 - content/post/clustered-spring-boot-services-with-hazelcast-consul-stateful-stateless.md
 - content/post/easily-connecting-your-spring-boot-applications-to-the-elastic-stack-with-log4j2.md
