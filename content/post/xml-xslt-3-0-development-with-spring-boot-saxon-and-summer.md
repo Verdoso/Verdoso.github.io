@@ -21,6 +21,8 @@ Let’s start
 
 In order to demonstrate the whole process, let’s begin with a bare bones application created from scratch using [Spring Initializr.](https://start.spring.io/) We will make it very basic so let’s use the options: Maven, Java, Spring Boot 1.5.21, Jar and Java 8:
 
+![](/uploads/Spring-Init.PNG)
+
 After the project is generated, we just need to import it in our IDE of choice. We want this to be a web application, so let’s make some changes in the pom.xml. First, change the spring-boot-starter dependency and make it a spring-boot-starter-web dependency, so it looks like this:
 
 In my case, I’m also adding the Lombok dependency to skip tons of boilerplate; I certainly recommend it. The basic POM now looks like this: [https://gist.github.com/Verdoso/fcbaffcc740dbdf65251d0373bc0207a](https://gist.github.com/Verdoso/fcbaffcc740dbdf65251d0373bc0207a "https://gist.github.com/Verdoso/fcbaffcc740dbdf65251d0373bc0207a")
@@ -53,7 +55,7 @@ We then need to create the XSLT that will be used to process the XML. We have to
 
 [https://gist.github.com/Verdoso/37c48217b659489af55aa353480061ef](https://gist.github.com/Verdoso/37c48217b659489af55aa353480061ef "https://gist.github.com/Verdoso/37c48217b659489af55aa353480061ef")
 
-Then we need to update the controller class so it uses the XSLT. What we are doing is basically telling Spring we’ll use a specific ModelView that need the name of the view and the root object for our XML.
+Then we need to update the controller class so it uses the XSLT. What we are doing is basically telling Spring we’ll use a specific ModelView () that needs the name of the view and the root object for our XML.
 
 [https://gist.github.com/Verdoso/2a6a985d050aaf76dffab4b5b847ab0e](https://gist.github.com/Verdoso/2a6a985d050aaf76dffab4b5b847ab0e "https://gist.github.com/Verdoso/2a6a985d050aaf76dffab4b5b847ab0e")
 
@@ -65,7 +67,11 @@ If you are using Eclipse as IDE, make sure the project is built each time you sa
 
 Now when you access [http://localhost:8080/test](http://localhost:8080/test), this is what you should see:
 
+![](/uploads/HTML_test.PNG)
+
 And, bonus point, thanks to being in development mode, you can add the parameter showXMLSource=true to see the XML that is being used to produce the page, so accessing [http://localhost:8080/test?showXMLSource=true](http://localhost:8080/test?showXMLSource=true) you should see again:
+
+![](/uploads/showXMLSource.PNG)
 
 This lets you check the XML you are using as source when editing the XSLT stylesheet to verify that your paths and attributes names are correct. When devMode is set to false, access to the XSML source is restricted for security reasons.
 
