@@ -33,7 +33,7 @@ The idea is that we will have an API (XsltDemoApi [https://gist.github.com/Verdo
 
 We are returning the wrapper class (App) directly, so Spring Boot automagically uses JAXB to transform it into XML when the response to our request is returned:
 
-If we start the app and call http://localhost:8080/test, this is what we get back:
+If we start the app and call [http://localhost:8080/test](http://localhost:8080/test), this is what we get back:
 
 [https://gist.github.com/Verdoso/eddf8ee0c9b5cca681cd2c5ab11c0e20](https://gist.github.com/Verdoso/eddf8ee0c9b5cca681cd2c5ab11c0e20 "https://gist.github.com/Verdoso/eddf8ee0c9b5cca681cd2c5ab11c0e20")
 
