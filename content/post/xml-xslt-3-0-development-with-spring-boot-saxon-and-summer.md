@@ -59,7 +59,7 @@ If we start the app and call [http://localhost:8080/test](http://localhost:8080/
 
 So far, so good, the XML we just generated contains the information we need to create our user interface. One of the good points of using XML is that you can see in your XML source pretty much* all the information that you have available to play with. ( * pretty much because you can play some tricks in XSLT to get extra XML from external sources)
 
-In order to add the XSLT processing we need to add some other libraries. So, let’s add [GreenSummer](https://github.com/Verdoso/GreenSummer/) and [Saxon](http://saxon.sourceforge.net/) to the mix:
+In order to add the XSLT processing we need to add some other libraries: Let’s add [GreenSummer](https://github.com/Verdoso/GreenSummer/) and [Saxon](http://saxon.sourceforge.net/) to the mix:
 
 {{< gist Verdoso 3dff3fb2dd4cb6a028d628b18e2c3d76>}}
 
