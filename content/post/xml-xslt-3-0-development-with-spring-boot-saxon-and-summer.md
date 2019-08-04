@@ -31,11 +31,11 @@ In my case, I’m also adding the Lombok dependency to skip tons of boilerplate;
 
 Now, let’s create a controller that fakes some business logic that returns some objects:
 
-The idea is that we will have an API, XsltDemoApi,
+The idea is that we will have an API, XsltDemoApi
 
 {{< gist Verdoso f2e927e8ba710a5a1194c6b1064ff3f0>}}
 
-, that calls a service, PojoService,
+that calls a service, PojoService
 
 {{< gist Verdoso 645e2062b2f1d7264b21b95333e2fbd9>}}
 
