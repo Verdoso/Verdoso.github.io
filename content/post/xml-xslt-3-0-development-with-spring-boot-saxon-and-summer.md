@@ -39,7 +39,7 @@ that calls a service, PojoService
 
 {{< gist Verdoso 645e2062b2f1d7264b21b95333e2fbd9>}}
 
-that returns a list of objects (of the type MyPojo)
+that returns a list of objects of the type MyPojo
 
 {{< gist Verdoso 3c81020a559b20eccfc7205fd3d43962>}}
 
