@@ -4,7 +4,7 @@ tags:
 - Spring Boot
 - Java
 - XSLT
-featured_image: ''
+featured_image: "/uploads/code-1076536_640.jpg"
 title: XML/XSLT 3.0 development with Spring Boot, Saxon and Summer
 draft: true
 
