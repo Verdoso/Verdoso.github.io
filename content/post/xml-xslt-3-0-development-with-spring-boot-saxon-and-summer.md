@@ -43,7 +43,7 @@ that returns a list of objects of the type MyPojo
 
 {{< gist Verdoso 3c81020a559b20eccfc7205fd3d43962>}}
 
-and wrapps this list in a common class, App
+and wrapps this list in a common class (so we have always a common XML root), App
 
 {{< gist Verdoso 3a85e3c50e8873c2df8522136b75ca38>}}
 
