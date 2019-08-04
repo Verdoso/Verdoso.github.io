@@ -63,11 +63,11 @@ In order to add the XSLT processing we need to add some other libraries: Let’s
 
 {{< gist Verdoso 3dff3fb2dd4cb6a028d628b18e2c3d76>}}
 
-We also need to tell the application that we will be using _GreenSummer_, so we have to edit _XsltDemoApplication_ and add the annotation _@EnableSummer(xslt_view = true, xml_view_pooling = true)_, so it ends up like this:
+We also need to tell the application that we will be using _GreenSummer_, so we have to edit _XsltDemoApplication_ and add the annotation _@EnableSummer(xslt_view = true, log4j = false)_, so it ends up like this:
 
 {{< gist Verdoso 69691f9459fde60c0f93a7ab467dfa8a>}}
 
-(note: if you forget enable GreenSummer, you’ll get a 404 error when trying to execute the operation as it will try to find a default view with the name _pojo_process.xslt_ in it and it won’t be able to find it, hence the 404)
+(note: if you forget enable GreenSummer, you’ll get a 404 error when trying to execute the operation as it will try to find a default view with the name _pojo_process.xslt_ in it and it won’t be able to find it, hence the 404). We add log4j = false becase by default we always use Log4J2 instead of Logback and Spring does not.
 
 We then need to create the XSLT that will be used to process the XML. We have to place it in _main/resources/xslt_ (default summer XSLT location) and name it _pojo_process.xslt,_ with this content:
 
