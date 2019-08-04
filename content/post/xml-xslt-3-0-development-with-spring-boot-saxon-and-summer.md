@@ -9,6 +9,8 @@ title: XML/XSLT 3.0 development with Spring Boot, Saxon and Summer
 draft: true
 
 ---
+(Image by [James Osborne](https://pixabay.com/users/jamesmarkosborne-1640589/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1076536)  from [Pixabay](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1076536))
+
 In this entry, I am going to explain how you can develop web applications using [Spring Boot](https://spring.io/projects/spring-boot) using [XSLT 3.0](https://www.w3.org/TR/xslt-30/) as a view technology. The [XSLT 3.0](https://www.w3.org/TR/xslt-30/) processor I’m going to be using is [Saxon](http://saxon.sourceforge.net/) as that is the only working Java implementation I’m aware of. To facilitate development, I will add my own library to the mix, [GreenSummer](https://github.com/Verdoso/GreenSummer/), because it’s the one I’m most familiar with.
 
 First all, I know XSLT is a controversial technology and prone to abuse, which has caused people a lot of pain and hate. On the other hand, we’ve been using it as our main view technology for more than 20 years and we’ve learnt not to abuse it and work around its pain points, for example, by using other view technologies when necessary. So, if you feel XSLT is not for you, no problem, just skip this entry and keep swimming.
