@@ -25,35 +25,35 @@ In order to demonstrate the whole process, let’s begin with a bare bones appli
 
 After the project is generated, we just need to import it in our IDE of choice. We want this to be a web application, so let’s make some changes in the pom.xml. First, change the spring-boot-starter dependency and make it a spring-boot-starter-web dependency, so it looks like this:
 
-In my case, I’m also adding the Lombok dependency to skip tons of boilerplate; I certainly recommend it. The basic POM now looks like this: 
+In my case, I’m also adding the Lombok dependency to skip tons of boilerplate; I certainly recommend it. The basic POM now looks like this:
 
 {{< gist Verdoso fcbaffcc740dbdf65251d0373bc0207a>}}
 
 Now, let’s create a controller that fakes some business logic that returns some objects:
 
-The idea is that we will have an API, [XsltDemoApi](https://gist.github.com/Verdoso/f2e927e8ba710a5a1194c6b1064ff3f0),
+The idea is that we will have an API, XsltDemoApi,
 
-{{< gist Verdoso xxxxxxxxxx>}}
+{{< gist Verdoso f2e927e8ba710a5a1194c6b1064ff3f0>}}
 
-, that calls a service, [PojoService](645e2062b2f1d7264b21b95333e2fbd9),
+, that calls a service, PojoService,
 
-{{< gist Verdoso xxxxxxxxxx>}}
+{{< gist Verdoso 645e2062b2f1d7264b21b95333e2fbd9>}}
 
- that returns a list of objects (of the type MyPojo 
+that returns a list of objects (of the type MyPojo)
 
-{{< gist Verdoso xxxxxxxxxx>}}
+{{< gist Verdoso 3c81020a559b20eccfc7205fd3d43962>}}
 
-[https://gist.github.com/Verdoso/3c81020a559b20eccfc7205fd3d43962](https://gist.github.com/Verdoso/3c81020a559b20eccfc7205fd3d43962 "https://gist.github.com/Verdoso/3c81020a559b20eccfc7205fd3d43962")) and wrapps this list in a common class, App,
+and wrapps this list in a common class, App,
 
-{{< gist Verdoso xxxxxxxxxx>}} [https://gist.github.com/Verdoso/3a85e3c50e8873c2df8522136b75ca38](https://gist.github.com/Verdoso/3a85e3c50e8873c2df8522136b75ca38 "https://gist.github.com/Verdoso/3a85e3c50e8873c2df8522136b75ca38")) before returning it.
+{{< gist Verdoso 3a85e3c50e8873c2df8522136b75ca38>}}
+
+before returning it.
 
 We are returning the wrapper class (App) directly, so Spring Boot automagically uses JAXB to transform it into XML when the response to our request is returned:
 
 If we start the app and call [http://localhost:8080/test](http://localhost:8080/test), this is what we get back:
 
-{{< gist Verdoso xxxxxxxxxx>}}
-
-[https://gist.github.com/Verdoso/eddf8ee0c9b5cca681cd2c5ab11c0e20](https://gist.github.com/Verdoso/eddf8ee0c9b5cca681cd2c5ab11c0e20 "https://gist.github.com/Verdoso/eddf8ee0c9b5cca681cd2c5ab11c0e20")
+{{< gist Verdoso eddf8ee0c9b5cca681cd2c5ab11c0e20>}}
 
 ## Adding the view
 
@@ -61,29 +61,21 @@ So far, so good, the XML we just generated contains the information we need to c
 
 In order to add the XSLT processing we need to add some other libraries. So, let’s add [GreenSummer](https://github.com/Verdoso/GreenSummer/) and [Saxon](http://saxon.sourceforge.net/) to the mix:
 
-{{< gist Verdoso xxxxxxxxxx>}}
-
-[https://gist.github.com/Verdoso/3dff3fb2dd4cb6a028d628b18e2c3d76](https://gist.github.com/Verdoso/3dff3fb2dd4cb6a028d628b18e2c3d76 "https://gist.github.com/Verdoso/3dff3fb2dd4cb6a028d628b18e2c3d76")
+{{< gist Verdoso 3dff3fb2dd4cb6a028d628b18e2c3d76>}}
 
 We also need to tell the application that we will be using _GreenSummer_, so we have to edit _XsltDemoApplication_ and add the annotation _@EnableSummer(xslt_view = true, xml_view_pooling = true)_, so it ends up like this:
 
-{{< gist Verdoso xxxxxxxxxx>}}
-
-[https://gist.github.com/Verdoso/69691f9459fde60c0f93a7ab467dfa8a](https://gist.github.com/Verdoso/69691f9459fde60c0f93a7ab467dfa8a "https://gist.github.com/Verdoso/69691f9459fde60c0f93a7ab467dfa8a")
+{{< gist Verdoso 69691f9459fde60c0f93a7ab467dfa8a>}}
 
 (note: if you forget enable GreenSummer, you’ll get a 404 error when trying to execute the operation as it will try to find a default view with the name _pojo_process.xslt_ in it and it won’t be able to find it, hence the 404)
 
 We then need to create the XSLT that will be used to process the XML. We have to place it in _main/resources/xslt_ (default summer XSLT location) and name it _pojo_process.xslt,_ with this content:
 
-{{< gist Verdoso xxxxxxxxxx>}}
-
-[https://gist.github.com/Verdoso/37c48217b659489af55aa353480061ef](https://gist.github.com/Verdoso/37c48217b659489af55aa353480061ef "https://gist.github.com/Verdoso/37c48217b659489af55aa353480061ef")
+{{< gist Verdoso 37c48217b659489af55aa353480061ef>}}
 
 Then we need to update the controller class so it uses the XSLT. What we are doing is basically telling Spring we’ll use a specific ModelView () that needs the name of the view and the root object for our XML.
 
-{{< gist Verdoso xxxxxxxxxx>}}
-
-[https://gist.github.com/Verdoso/2a6a985d050aaf76dffab4b5b847ab0e](https://gist.github.com/Verdoso/2a6a985d050aaf76dffab4b5b847ab0e "https://gist.github.com/Verdoso/2a6a985d050aaf76dffab4b5b847ab0e")
+{{< gist Verdoso 2a6a985d050aaf76dffab4b5b847ab0e>}}
 
 To end up, an extra detail:
 
@@ -111,9 +103,7 @@ To show the full development cycle of using XML/XSLT with Spring Boot, I’ll sh
 
 We don’t want to have to start the whole application when doing each test, so we will use MockMvc (see [https://spring.io/guides/gs/testing-web/](https://spring.io/guides/gs/testing-web/ "https://spring.io/guides/gs/testing-web/") for more information) to just test the web layer. A sample testing class is this:
 
-{{< gist Verdoso xxxxxxxxxx>}}
-
-[https://gist.github.com/Verdoso/6a1cf77bc6786f664730a2a22a46b6dd](https://gist.github.com/Verdoso/6a1cf77bc6786f664730a2a22a46b6dd "https://gist.github.com/Verdoso/6a1cf77bc6786f664730a2a22a46b6dd")
+{{< gist Verdoso 6a1cf77bc6786f664730a2a22a46b6dd>}}
 
 We have added two test methods, testXMLIsFine() and testHTMLIsFine(), one to test that the XML we are using as origin for the view is generated correctly, and the other to test that the final HTML is correct. Depending on your role or your requirements, you might want to do both or just one of those, but I added them both so you can see how the two approaches work.
 
