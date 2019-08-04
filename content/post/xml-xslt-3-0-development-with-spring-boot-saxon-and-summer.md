@@ -69,17 +69,17 @@ We also need to tell the application that we will be using _GreenSummer_, so we 
 
 (note: if you forget enable GreenSummer, you’ll get a 404 error when trying to execute the operation as it will try to find a default view with the name _pojo_process.xslt_ in it and it won’t be able to find it, hence the 404). We add log4j = false becase by default we always use Log4J2 instead of Logback and Spring does not.
 
-We then need to create the XSLT that will be used to process the XML. We have to place it in _main/resources/xslt_ (default summer XSLT location) and name it _pojo_process.xslt,_ with this content:
+We then need to create the XSLT that will be used to process the XML. We place it in _main/resources/xslt_ (default summer XSLT location) and name it _pojo_process.xslt,_ with this content:
 
 {{< gist Verdoso 37c48217b659489af55aa353480061ef>}}
 
-Then we need to update the controller class so it uses the XSLT. What we are doing is basically telling Spring we’ll use a specific ModelView () that needs the name of the view and the root object for our XML.
+And now we update the controller class so it uses the XSLT. What we are doing is telling Spring we are using a specific ModelAndView class (org.greeneyed.summer.config.XsltConfiguration.XsltModelAndView) that needs the name of the view and the root object for our XML.
 
 {{< gist Verdoso 2a6a985d050aaf76dffab4b5b847ab0e>}}
 
 To end up, an extra detail:
 
-First, as we are in development, we want to be able to change the XSLT and see the changes without having to restart the application. In order to enable that, we just need to set the property summer.xslt.devMode=true in application.properties. That configures GreenSummer to it compiles the XSLT each time you use it. If you don’t set it, or set it to false, as you will want to do in production, the XSLT is compiled just once, and then the compiled form is reused each time, so it is more performant.
+First, as we are in development, we want to be able to change the XSLT and see the changes without having to restart the application. In order to enable that, we just need to set the property _summer.xslt.devMode=true_ in _application.properties_. That configures GreenSummer so it compiles the XSLT each time you use it. If you don’t set it, or set it to false, as you will want to do in production, the XSLT is compiled just once, and then the compiled form is reused each time, so it is more performant.
 
 If you are using Eclipse as IDE, make sure the project is built each time you save your XSLT: _Preferences > General > Workspace > Build > Build automatically_. Otherwise you’ll have to build your project manually each time you want to see your changes in the XSLT (auch!).
 
@@ -91,7 +91,7 @@ And, bonus point, thanks to being in development mode, you can add the parameter
 
 ![](/uploads/showXMLSource.PNG)
 
-This lets you check the XML you are using as source when editing the XSLT stylesheet to verify that your paths and attributes names are correct. When devMode is set to false, access to the XSML source is restricted for security reasons.
+This lets you check the XML you are using as source when editing the XSLT stylesheet to verify that your paths and attributes names are correct. When devMode is set to false, access to the XML source is restricted for security reasons.
 
 And that’s it. After that it’s just a matter of creating returning the appropriate classes that contain the relevant information for the page you want to display and create the XSLT stylesheets and templates to process them and generate the desired output.
 
