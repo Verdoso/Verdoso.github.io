@@ -9,7 +9,7 @@ title: XML/XSLT 3.0 development with Spring Boot, Saxon and Summer
 draft: true
 
 ---
-(Image by [James Osborne](https://pixabay.com/users/jamesmarkosborne-1640589/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1076536)  from [Pixabay](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1076536))
+(Image by [James Osborne](https://pixabay.com/users/jamesmarkosborne-1640589/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1076536)  from [Pixabay](https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1076536))
 
 In this entry, I am going to explain how you can develop web applications using [Spring Boot](https://spring.io/projects/spring-boot) using [XSLT 3.0](https://www.w3.org/TR/xslt-30/) as a view technology. The [XSLT 3.0](https://www.w3.org/TR/xslt-30/) processor I’m going to be using is [Saxon](http://saxon.sourceforge.net/) as that is the only working Java implementation I’m aware of. To facilitate development, I will add my own library to the mix, [GreenSummer](https://github.com/Verdoso/GreenSummer/), because it’s the one I’m most familiar with.
 
@@ -111,7 +111,7 @@ We have added two test methods, testXMLIsFine() and testHTMLIsFine(), one to tes
 
 Note that the tests just start the web layer of Spring Boot, so they run relatively fast, compared to having to start the whole app.
 
-Also note that, in order to test the HTML, we have used JSoup, so we added it as dependency in the final POM. And as we used “showXMLSource=true” in the tests, we need to enable Green Summer XSLT development mode in src/test/resources/applications.properties
+Also note that, in order to test the HTML, we have used [jsoup](https://jsoup.org/), so we added it as dependency in the final POM. And as we used “showXMLSource=true” in the tests, we need to enable Green Summer XSLT development mode in src/test/resources/applications.properties
 
 You can see the final complete code here:
 
