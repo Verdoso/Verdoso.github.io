@@ -75,7 +75,7 @@ We then need to create the XSLT that will be used to process the XML. We place i
 
 {{< gist Verdoso 37c48217b659489af55aa353480061ef>}}
 
-And now we update the controller class so it uses the XSLT. What we are doing is telling Spring we are using a specific ModelAndView class (org.greeneyed.summer.config.XsltConfiguration.XsltModelAndView) that needs the name of the view and the root object for our XML.
+It is a very simple XSLT and we are not using the full power of XSLT 3.0, but let's start simple. Now we update the controller class so it uses the XSLT. What we are doing is telling Spring we are using a specific ModelAndView class (org.greeneyed.summer.config.XsltConfiguration.XsltModelAndView) that needs the name of the view and the root object for our XML.
 
 {{< gist Verdoso 2a6a985d050aaf76dffab4b5b847ab0e>}}
 
