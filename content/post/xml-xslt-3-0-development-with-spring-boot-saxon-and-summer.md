@@ -112,6 +112,4 @@ Note that the tests just start the web layer of Spring Boot, so they run relativ
 
 Also note that, in order to test the HTML, we have used [jsoup](https://jsoup.org/), so we added it as dependency in the final POM. And as we used “showXMLSource=true” in the tests, we need to enable Green Summer XSLT development mode in src/test/resources/applications.properties
 
-You can see the final complete code here:
-
 Happy coding!
