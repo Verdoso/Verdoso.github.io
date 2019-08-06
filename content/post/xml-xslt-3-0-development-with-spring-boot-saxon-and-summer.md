@@ -110,8 +110,8 @@ We have added two test methods, testXMLIsFine() and testHTMLIsFine(), one to tes
 
 Note that the tests just start the web layer of Spring Boot, so they run relatively fast, compared to having to start the whole app.
 
-Also note that, in order to test the HTML, we have used [jsoup](https://jsoup.org/), so we added it as dependency in the final POM. And as we used “showXMLSource=true” in the tests, we need to enable Green Summer XSLT development mode in src/test/resources/applications.properties
+Also note that, in order to test the HTML, we have used [jsoup](https://jsoup.org/), so we added it as dependency in the final POM. And as we used “showXMLSource=true” in the tests, we need to enable Green Summer XSLT development mode in [src/test/resources/applications-test.properties](https://github.com/Verdoso/xslt_demo/blob/master/src/test/resources/application-test.properties)
 
-You can find all the code in Github in the [Summer XSLT Demo project](https://github.com/Verdoso/xslt_demo). 
+You can find all the code in Github in the [Summer XSLT Demo project](https://github.com/Verdoso/xslt_demo).
 
 Happy coding!
