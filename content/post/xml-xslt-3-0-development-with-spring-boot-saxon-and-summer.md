@@ -68,7 +68,7 @@ We also need to tell the application that we will be using _GreenSummer_, so we 
 
 {{< gist Verdoso 69691f9459fde60c0f93a7ab467dfa8a>}}
 
-(note: if you forget enable GreenSummer, you’ll get a 404 error when trying to execute the operation as it will try to find a default view with the name _pojo_process.xslt_ in it and it won’t be able to find it, hence the 404). We add log4j = false becase by default we always use Log4J2 instead of Logback and Spring does not.
+(note: if you forget enable GreenSummer, you’ll get a 404 error when trying to execute the operation as it will try to find a default view with the name "_pojo_process.xslt"_ in it and it won’t be able to find it, hence the 404). We add log4j = false becase by default we always use Log4J2 instead of Logback and Spring does not.
 
 We then need to create the XSLT that will be used to process the XML. We place it in _main/resources/xslt_ (default summer XSLT location) and name it _pojo_process.xslt,_ with this content:
 
