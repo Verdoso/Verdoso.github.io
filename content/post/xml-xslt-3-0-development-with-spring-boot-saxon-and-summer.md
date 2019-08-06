@@ -6,7 +6,6 @@ tags:
 - XSLT
 featured_image: "/uploads/code-1076536_640.jpg"
 title: XML/XSLT 3.0 development with Spring Boot, Saxon and Summer
-draft: true
 
 ---
 (Image by [James Osborne](https://pixabay.com/users/jamesmarkosborne-1640589/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1076536)  from [Pixabay](https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1076536))
