@@ -30,7 +30,7 @@ The classes that represent our business logic model are in the [_org.greeneyed.v
 
 MyPojo
 
-<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/model/MyPojo.java?footer=no"></script>
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/model/MyPojo.java?footer=minimal"></script>
 
 And RelatedPojo
 
