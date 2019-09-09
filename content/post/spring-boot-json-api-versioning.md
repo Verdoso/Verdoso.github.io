@@ -22,13 +22,15 @@ Just to get it out of the way, we will mention that there is always the option o
 
 ## Introduction
 
-In all the approaches we are going to demonstrate, we will show a controller that displays a different version of a JSON depending on the version of the API we are requesting. Selecting the version is done through the URL, for example _/controller/version/test_, but the version could also be specified as request header, for example.
+In all the approaches we are going to demonstrate, with a project available at Github ([**VersioningDemo**](https://github.com/Verdoso/VersioningDemo)), we will show a controller that displays a different version of a JSON depending on the version of the API we are requesting. Selecting the version is done through the URL, for example _/controller/version/test_, but the version could also be specified as request header, for example.
 
 It is also usually a good idea to separate the objects that are part of the business logic from the objects that you use to represent the API to the external world, especially if you are using an auto-mapping tool like Jackson to generate the JSON from Java objects, so that’s what we have done. The Java objects that represent your JSON become your view, so the same principles to separate the model from the view apply here.
 
-The classes that represent our business logic model are in the _org.greeneyed.versioning.demo.model_ package and are fairly simple:
+The classes that represent our business logic model are in the [_org.greeneyed.versioning.demo.model_](https://github.com/Verdoso/VersioningDemo/tree/master/src/main/java/org/greeneyed/versioning/demo/model) package and are fairly simple:
 
-Pojo
+MyPojo
+
+    <script src="http://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/model/MyPojo.java"></script>
 
 And RelatedPojo
 
