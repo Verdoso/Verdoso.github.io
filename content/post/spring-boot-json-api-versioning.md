@@ -38,7 +38,8 @@ And RelatedPojo
 
 The class that represents our business logic processes is PojoService and it is a simple mock up:
 
-PojoService
+PojoService:
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/services/PojoService.java?footer=minimal"></script>
 
 The classes that represent the view are mainly in the _org.greeneyed.versioning.demo.api_ package, even though in some cases I have left them as static inner classes of the controllers for the sake of brevity (don’t try this at home :D).
 
