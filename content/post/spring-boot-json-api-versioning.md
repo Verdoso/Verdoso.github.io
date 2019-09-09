@@ -30,11 +30,11 @@ The classes that represent our business logic model are in the [_org.greeneyed.v
 
 MyPojo
 
-<script src="http://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/model/MyPojo.java"></script>
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/model/MyPojo.java"></script>
 
 And RelatedPojo
 
-<script src="http://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/model/RemotePojo.java"></script>
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/model/RemotePojo.java"></script>
 
 The class that represents our business logic processes is PojoService and it is a simple mock up:
 
