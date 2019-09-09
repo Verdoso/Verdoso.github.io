@@ -34,7 +34,7 @@ MyPojo
 
 And RelatedPojo
 
-<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/model/RemotePojo.java?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/model/RelatedPojo.java?footer=minimal"></script>
 
 The class that represents our business logic processes is PojoService and it is a simple mock up:
 
@@ -54,7 +54,11 @@ So let’s explore the alternatives:
 
 ## Classic
 
-The classic approach is the one that requires less support from the framework and it can also be used when no automatic approach helps. In this case, what we do is to have several sets of classes that represent the different views/versions of the API and then convert to one set or another depending on the version requested. The controller that demonstrates this behavior in our demo is [_org.greeneyed.versioning.demo.controllers.ClassicVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/ClassicVersioningAPI.java), where depending on the version specified, we convert the “version neutral” model classes into the view classes from package _org.greeneyed.versioning.demo.api.v1_ or _org.greeneyed.versioning.demo.api.v2_.
+The classic approach is the one that requires less support from the framework and it can also be used when no automatic approach helps. In this case, what we do is to have several sets of classes that represent the different views/versions of the API and then convert to one set or another depending on the version requested. The controller that demonstrates this behavior in our demo is [_org.greeneyed.versioning.demo.controllers.ClassicVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/ClassicVersioningAPI.java):
+
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/ClassicVersioningAPI.java?footer=minimal"></script>
+
+where depending on the version specified, we convert the “version neutral” model classes into the view classes from package _org.greeneyed.versioning.demo.api.v1_ or _org.greeneyed.versioning.demo.api.v2_.
 
 It is simple, straightforward, and the main problem is that it requires creating new sets of classes and conversion code per version. If you don’t create new classes for things that are almost-the-same, then the conversion code becomes cluttered with conditionals to fill up fields in some cases and not in others, which is error prone. If you create complete new hierarchies for each version, then the code is easier to check and reason about, but then you might end up with repeated boilerplate “copy” operations all over the place.
 
