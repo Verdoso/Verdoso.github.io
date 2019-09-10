@@ -65,7 +65,7 @@ The classic approach is the one that requires less support from the framework an
 
 where depending on the version specified, we convert the “version neutral” model classes into the view classes from package _org.greeneyed.versioning.demo.api.v1_ or _org.greeneyed.versioning.demo.api.v2_. We would wrap it with more code to make it more reusable etc. but for the demo we have reduced the code to the fundamental parts.
 
-The good thin is that it is simple and straightforward. The main drawbacks is that it requires creating new sets of classes and conversion code per version. 
+The good thin is that it is simple and straightforward. The main drawbacks is that it requires creating new sets of classes and conversion code per version.
 
 If you don’t create new classes for things that are almost-the-same, then the conversion code becomes cluttered with conditionals to fill up fields in some cases and not in others, which is error prone.
 
@@ -91,9 +91,9 @@ That means we just need one set of classes for both versions and one piece of lo
 
 So, once we are at this point, we just have one set of classes and one piece of “boilerplate copying”. Unfortunately, the @JsonView annotation just allows us to specify one version at compile time, so how do we get rid of the need to create a handler method per version?
 
-Well, the solution is relative simple. When you return an object in an MVC handler method, Jackson simply knows it has to serialize it, so it uses the global mapper for that. On the other hand, if you wrap your object around a [_org.springframework.http.converter.json.MappingJacksonValue_](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/http/converter/json/MappingJacksonValue.html), it lets you specify the view class for that object and it is the one that Jackson uses to serialize it.
+Well, the solution is relatively simple. When you return an object in an MVC handler method, Jackson knows it has to serialize it, but it has no other information about it, so it uses the global mapper for that. On the other hand, if you wrap your object around a [_MappingJacksonValue_](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/http/converter/json/MappingJacksonValue.html), it lets you specify the view class for that object and it is the one that Jackson will use to serialize it.
 
-So, you just need to create a _MappingJacksonValue_ instance from your original object, specify the view class and return the _MappingJacksonValue_ instance. And that’s exactly what the [_org.greeneyed.versioning.demo.controllers.MappingJacksonValueViewsVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueViewsVersioningAPI.java) controller class demonstrates:
+So, you just need to create a _MappingJacksonValue_ instance from your original object and return it after specifying the appropriate view class. And that’s exactly what the [_org.greeneyed.versioning.demo.controllers.MappingJacksonValueViewsVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueViewsVersioningAPI.java) controller class demonstrates:
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueViewsVersioningAPI.java?footer=minimal"></script>
 
