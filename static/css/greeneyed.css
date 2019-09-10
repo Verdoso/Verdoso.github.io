@@ -16,6 +16,10 @@ article.mw8 {
     max-width: 90rem;
 }
 
+.nested-img img {
+    width: inherit;
+}
+
 @media screen and (min-width: 60em) {
     .measure-wide {
         max-width: 40em;
