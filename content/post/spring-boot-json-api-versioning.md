@@ -47,7 +47,7 @@ In our service, we will have an API that when called with the version 1, it will
 
 ![API version 1](/uploads/API-v1.PNG "API version 1")
 
-Let’s imagine that in our business, someone decided later on that including the related id and forcing the clients to make another request to get the related name was not the way to go, so the related name was added to the response, and in order not to clutter the original basic object, a related object appeared. Like this:
+Let’s imagine that in our business, someone decided later on that including the related id and forcing the clients to make another request to get the related name was not the way to go, so the related name was added to the response, and in order not to clutter the original basic object, a related object appeared. So version 2 looks like this:
 
 ![API version 2](/uploads/API-v2.PNG "API version 2")
 
