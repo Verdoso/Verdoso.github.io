@@ -101,7 +101,9 @@ You can see that the logic and the API model classes are the same as in the prev
 
 ## MappingJacksonValue with JSON Filters
 
-Jackson also provides a different way of specifying which fields we want serialized or not, and that’s through the use of JSON Filters (you can learn more about them at the Baeldung’s entry “[Serialize Only Fields that meet a Custom Criteria with Jackson](https://www.baeldung.com/jackson-serialize-field-custom-criteria)”) In this case what we need to do is specify the class/instance that will decide what is going to happened to each field. Why use that instead of the _@JsonView_ annotation? Well, the annotation is static, unique, and specified at compile time, so there’s nothing in runtime you can do about it, so if you need more than that, you have this option.
+Jackson also provides a different way of specifying which fields we want serialized or not, and that’s through the use of JSON filters (you can learn more about them at the Baeldung’s entry “[Serialize Only Fields that meet a Custom Criteria with Jackson](https://www.baeldung.com/jackson-serialize-field-custom-criteria)”).
+
+In this case we need to specify the class/instance, the filter, that will decide what is going to happen to each field. Why use that instead of _@JsonView_ at the model? Well, the annotation is static, it allows you to specify just one value, and it is specified at compile time, so there’s nothing in runtime you can do about it. So, if you need more than that, you have the alternative of using JSON filters.
 
 Moreover, Spring also supports specifying the filter instance to be used through the _MappingJacksonValue_ class that we used in the last technique. So that’s why the code demonstrating this technique is pretty similar to the previous one, except this time we are setting a different PropertyFilter instance depending on the version instead of a class. You can see that at the [_org.greeneyed.versioning.demo.controllers.MappingJacksonValueFilterVersioningAPI_ ](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueFilterVersioningAPI.java)controller class:
 
