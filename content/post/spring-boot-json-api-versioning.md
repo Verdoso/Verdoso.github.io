@@ -1,5 +1,5 @@
 ---
-date: 2019-09-09T18:15:34+02:00
+date: 2019-09-09T16:15:34.000+00:00
 tags:
 - java
 - spring boot
@@ -45,7 +45,11 @@ The classes that represent the view are mainly in the _org.greeneyed.versioning.
 
 In our service, we will have an API that when called with the version 1, it will return this structure:
 
+![API version 1](/uploads/API-v1.PNG "API version 1")
+
 Let’s imagine that in our business, someone decided later on that including the related id and forcing the clients to make another request to get the related name was not the way to go, so the related name was added to the response, and in order not to clutter the original basic object, a related object appeared. Like this:
+
+![API version 2](/uploads/API-v2.PNG "API version 2")
 
 We use this as an example because it is complex enough: We have some common fields that will appear in both versions and then some fields that will appear in one version but not the other.
 
