@@ -63,21 +63,25 @@ The classic approach is the one that requires less support from the framework an
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/ClassicVersioningAPI.java?footer=minimal"></script>
 
-where depending on the version specified, we convert the “version neutral” model classes into the view classes from package _org.greeneyed.versioning.demo.api.v1_ or _org.greeneyed.versioning.demo.api.v2_.
+where depending on the version specified, we convert the “version neutral” model classes into the view classes from package _org.greeneyed.versioning.demo.api.v1_ or _org.greeneyed.versioning.demo.api.v2_. We would wrap it with more code to make it more reusable etc. but for the demo we have reduced the code to the fundamental parts.
 
-It is simple, straightforward, and the main problem is that it requires creating new sets of classes and conversion code per version. If you don’t create new classes for things that are almost-the-same, then the conversion code becomes cluttered with conditionals to fill up fields in some cases and not in others, which is error prone. If you create complete new hierarchies for each version, then the code is easier to check and reason about, but then you might end up with repeated boilerplate “copy” operations all over the place.
+The good thin is that it is simple and straightforward. The main drawbacks is that it requires creating new sets of classes and conversion code per version. 
 
-Let’s see how we can remove part of the boilerplate code
+If you don’t create new classes for things that are almost-the-same, then the conversion code becomes cluttered with conditionals to fill up fields in some cases and not in others, which is error prone.
+
+If you create complete new hierarchies for each version, then the code is easier to check and reason about, but then you might end up with repeated boilerplate “copy” operations all over the place.
+
+So, let’s see if we can remove part of that boilerplate code
 
 ## Static Jackson JSON Views
 
 Jackon serialization includes a feature where you can “tag” some fields with a version, represented by a class, and those fields will be included or excluded depending on the view you specify at serialization time (you can read more about it at Baeldun’s “[Jackson JSON Views](https://www.baeldung.com/jackson-json-view-annotation)” entry).
 
-Spring included support for such mechanism a while ago ( see “[Latest Jackson integration improvements in Spring](https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring)” from December 2014) so we can use that. The idea is to produce the same classes from the business logic and let Jackson serialize them differently depending on the version that is specified in the MVC handler method through the annotation _@JsonView_. You can see how this is done in the [_org.greeneyed.versioning.demo.controllers.ViewsVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/ViewsVersioningAPI.java) controller class.
+Spring included support for such mechanism a while ago ( see “[Latest Jackson integration improvements in Spring](https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring)” from December 2014) so we can use that. The idea is to produce the same classes from the business logic and let Jackson serialize them differently depending on the version that is specified in the MVC handler method through the same annotation used to tag the model: _@JsonView_. You can see how this is done in the [_org.greeneyed.versioning.demo.controllers.ViewsVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/ViewsVersioningAPI.java) controller class.
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/ViewsVersioningAPI.java?footer=minimal"></script>
 
-The class includes two handler methods, one per version, each one annotated with the correct class, but the both defer to the same business logic, so there is no duplicate copying code. The trick here is that both controllers return objects from the type [_org.greeneyed.versioning.demo.api.MyPojoAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/api/MyPojoAPI.java) and in that class you can see that the attributes are tagged with _@JsonView_ as well, so Jackson knows which ones to include and which ones to skip.
+The class includes two handler methods, one per version, each one annotated with the correct class, but both of them defer to the same business logic, so there is no duplicate copying code. The trick here is that both controllers return objects from the type [_org.greeneyed.versioning.demo.api.MyPojoAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/api/MyPojoAPI.java) and in that class you can see that the attributes are tagged with _@JsonView_ as well, so Jackson knows which ones to include and which ones to skip.
 
 That means we just need one set of classes for both versions and one piece of logic to fill up the objects representing the API. On the other hand, we are duplicating the MVC handler methods just to specify the version, so if we have to do that for each method and version we have… auch! We can do better, as explained in the next technique.
 
