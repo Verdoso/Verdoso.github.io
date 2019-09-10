@@ -105,13 +105,15 @@ Jackson also provides a different way of specifying which fields we want seriali
 
 In this case we need to specify the class/instance, the filter, that will decide what is going to happen to each field. Why use that instead of _@JsonView_ at the model? Well, the annotation is static, it allows you to specify just one value, and it is specified at compile time, so there’s nothing in runtime you can do about it. So, if you need more than that, you have the alternative of using JSON filters.
 
-Moreover, Spring also supports specifying the filter instance to be used through the _MappingJacksonValue_ class that we used in the last technique. So that’s why the code demonstrating this technique is pretty similar to the previous one, except this time we are setting a different PropertyFilter instance depending on the version instead of a class. You can see that at the [_org.greeneyed.versioning.demo.controllers.MappingJacksonValueFilterVersioningAPI_ ](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueFilterVersioningAPI.java)controller class:
+The good news is that Spring also supports specifying the filter instance to be used through the _MappingJacksonValue_ class that we used in the last technique. That’s why the code demonstrating this technique is pretty similar to the previous one, except this time we are setting a different PropertyFilter instance depending on the version instead of a class. You can see how it is being done at the [_org.greeneyed.versioning.demo.controllers.MappingJacksonValueFilterVersioningAPI_ ](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueFilterVersioningAPI.java)controller class:
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueFilterVersioningAPI.java?footer=minimal"></script>
 
 Note that in this case we have included a different version of the API model classes just to show that we are not using _@JsonView_ annotations.
 
-Json filters allow you to specify what happens in runtime for each field, but on the other hand the information that you have in runtime about the field you are deciding upon is pretty limited: Basically the name and some limited metadata. In fact, we are using one of those metadata fields (the description) to encode the versions we want the field to be included in, but I have to admit it does not feel completely right to use a field for such a different purpose. The alternative, though, is to hardcode the names of fields to include in each version, and that feels even “less right”.
+Json filters allow you to specify what happens in runtime for each field, but, on the other hand, the information that you have in runtime about the field you are deciding upon is pretty limited: Basically the name and some limited metadata. 
+
+In fact, we are using one of those metadata fields (the description) to encode the versions we want the field to be included in, but I have to admit it does not feel completely right to use a field for a purpose it was not created for. The alternative, though, is to hardcode the names of fields to include in each version, and that feels even “less right”.
 
 ## Jolt
 
