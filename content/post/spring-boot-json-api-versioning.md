@@ -135,7 +135,7 @@ We have demonstrated several techniques how one can evolve an API version using 
 
 In many cases, you will want to introduce changes in your business code to prevent some functionality to be executed depending on the version. As in “why access the DB to fill up some objects that are not going to be displayed in the final response?”, but that’s outside the realm of Jackson serialization and the scope of this entry.
 
-Extra bonus
+## Extra bonus
 
 Again, the code demonstrating all the techniques is at the Versioning Demo project @ GitHub [https://github.com/Verdoso/VersioningDemo](https://github.com/Verdoso/VersioningDemo "https://github.com/Verdoso/VersioningDemo"), but there you will also find a test class that shows how to create a parameterized test with MockMVC.
 
