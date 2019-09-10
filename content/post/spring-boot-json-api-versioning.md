@@ -83,6 +83,8 @@ Spring included support for such mechanism a while ago ( see “[Latest Jackson 
 
 The class includes two handler methods, one per version, each one annotated with the correct class, but both of them defer to the same business logic, so there is no duplicate copying code. The trick here is that both controllers return objects from the type [_org.greeneyed.versioning.demo.api.MyPojoAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/api/MyPojoAPI.java) and in that class you can see that the attributes are tagged with _@JsonView_ as well, so Jackson knows which ones to include and which ones to skip.
 
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/api/MyPojoAPI.java?footer=minimal"></script>
+
 That means we just need one set of classes for both versions and one piece of logic to fill up the objects representing the API. On the other hand, we are duplicating the MVC handler methods just to specify the version, so if we have to do that for each method and version we have… auch! We can do better, as explained in the next technique.
 
 ## MappingJacksonValue with JSON Views
