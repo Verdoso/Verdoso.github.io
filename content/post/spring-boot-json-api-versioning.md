@@ -117,9 +117,9 @@ In fact, we are using one of those metadata fields (the description) to encode t
 
 ## Jolt
 
-Once we have explored the different versions that Jackson offers, we wanted to show a different technique that is pretty similar to what one would do with XSLT if this was an XML API. [Jolt](https://github.com/bazaarvoice/jolt) is a Java library to perform JSON to JSON transformations where the specification is, itself, a JSON document.
+Once we have explored the different versions that Jackson offers, we wanted to show a different technique that is pretty similar to what one would do with XSLT if this was an XML API. And for that we can use [Jolt](https://github.com/bazaarvoice/jolt), a Java library to perform JSON to JSON transformations where the specification is, itself, a JSON document.
 
-Spring Boot does not include support for Jolt processing of the JSON produced by Jackson, but nothing prevents us from adding it (except time and resources, that is), so that’s what we did. In this case, what we need to do is simply return the new version of the API model object and then specify for each version, which transformation specification we want to apply. You can see that demonstrated in the controller [_org.greeneyed.versioning.demo.controllers.JoltVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/JoltVersioningAPI.java):
+Spring Boot does not include support for Jolt processing of the JSON produced by Jackson, but nothing prevents us from adding it (except time and resources, that is ;) ), so that’s what we did. In this case, what we need to do is simply return the new version of the API model object and then specify for each version, which transformation specification we want to apply. You can see that demonstrated in the controller [_org.greeneyed.versioning.demo.controllers.JoltVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/JoltVersioningAPI.java):
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/JoltVersioningAPI.java?footer=minimal"></script>
 
