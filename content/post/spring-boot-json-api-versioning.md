@@ -111,7 +111,7 @@ The good news is that Spring also supports specifying the filter instance to be 
 
 Note that in this case we have included a different version of the API model classes just to show that we are not using _@JsonView_ annotations.
 
-Json filters allow you to specify what happens in runtime for each field, but, on the other hand, the information that you have in runtime about the field you are deciding upon is pretty limited: Basically the name and some limited metadata. 
+Json filters allow you to specify what happens in runtime for each field, but, on the other hand, the information that you have in runtime about the field you are deciding upon is pretty limited: Basically the name and some limited metadata.
 
 In fact, we are using one of those metadata fields (the description) to encode the versions we want the field to be included in, but I have to admit it does not feel completely right to use a field for a purpose it was not created for. The alternative, though, is to hardcode the names of fields to include in each version, and that feels even “less right”.
 
@@ -144,3 +144,5 @@ In many cases, you will want to introduce changes in your business code to preve
 Again, the code demonstrating all the techniques is at the Versioning Demo project @ GitHub [https://github.com/Verdoso/VersioningDemo](https://github.com/Verdoso/VersioningDemo "https://github.com/Verdoso/VersioningDemo"), but there you will also find a test class that shows how to create a parameterized test with MockMVC.
 
 Happy coding!
+
+PS: Kudos @[gist-it.appspot.com](https://gist-it.appspot.com/) for creating the service to embed files directly from GitHub as "gists". Much appreciated!
