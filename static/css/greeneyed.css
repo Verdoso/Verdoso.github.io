@@ -12,6 +12,10 @@ ul.pa0 li .pv2 {
     padding-bottom: .25rem;
 }
 
+article.mw8 {
+    max-width: 90rem;
+}
+
 @media screen and (min-width: 60em) {
     .measure-wide {
         max-width: 40em;
