@@ -75,6 +75,8 @@ Jackon serialization includes a feature where you can “tag” some fields with
 
 Spring included support for such mechanism a while ago ( see “Latest Jackson integration improvements in Spring” - [https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring](https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring "https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring") from December 2014) so we can use that. The idea is to produce the same classes from the business logic and let Jackson serialize them differently depending on the version that is specified in the MVC handler method through the annotation _@JsonView_. You can see how this is done in the _org.greeneyed.versioning.demo.controllers.ViewsVersioningAPI_ controller class.
 
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/ViewsVersioningAPI.java?footer=minimal"></script>
+
 The class includes two handler methods, one per version, each one annotated with the correct class, but the both defer to the same business logic, so there is no duplicate copying code. The trick here is that both controllers return objects from the type _org.greeneyed.versioning.demo.api.MyPojoAPI_ and in that class you can see that the attributes are tagged with _@JsonView_ as well, so Jackson knows which ones to include and which ones to skip.
 
 That means we just need one set of classes for both versions and one piece of logic to fill up the objects representing the API. On the other hand, we are duplicating the MVC handler methods just to specify the version, so if we have to do that for each method and version we have… auch! We can do better, as explained in the next technique.
@@ -87,6 +89,8 @@ Well, the solution is relative simple. When you return an object in an MVC handl
 
 So, you just need to create a _MappingJacksonValue_ instance from your original object, specify the view class and return the _MappingJacksonValue_ instance. And that’s exactly what the _org.greeneyed.versioning.demo.controllers.MappingJacksonValueViewsVersioningAPI_ controller class demonstrates:
 
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueViewsVersioningAPI.java?footer=minimal"></script>
+
 You can see that the logic and the API model classes are the same as in the previous example. It is just that in this case, we are specifying the view to be used per request, instead of statically.
 
 ## MappingJacksonValue with JSON Filters
@@ -94,6 +98,8 @@ You can see that the logic and the API model classes are the same as in the prev
 Jackson also provides a different way of specifying which fields we want serialized or not, and that’s through the use of JSON Filters (you can learn more about them at the Baeldung’s entry “Serialize Only Fields that meet a Custom Criteria with Jackson” - [https://www.baeldung.com/jackson-serialize-field-custom-criteria](https://www.baeldung.com/jackson-serialize-field-custom-criteria "https://www.baeldung.com/jackson-serialize-field-custom-criteria")) In this case what we need to do is specify the class/instance that will decide what is going to happened to each field. Why use that instead of the _@JsonView_ annotation? Well, the annotation is static, unique, and specified at compile time, so there’s nothing in runtime you can do about it, so if you need more than that, you have this option.
 
 Moreover, Spring also supports specifying the filter instance to be used through the _MappingJacksonValue_ class that we used in the last technique. So that’s why the code demonstrating this technique is pretty similar to the previous one, except this time we are setting a different PropertyFilter instance depending on the version instead of a class. You can see that at the _org.greeneyed.versioning.demo.controllers.MappingJacksonValueFilterVersioningAPI_ controller class:
+
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueFilterVersioningAPI.java?footer=minimal"></script>
 
 Note that in this case we have included a different version of the API model classes just to show that we are not using _@JsonView_ annotations.
 
@@ -103,9 +109,17 @@ Json filters allow you to specify what happens in runtime for each field, but on
 
 Once we have explored the different versions that Jackson offers, we wanted to show a different technique that is pretty similar to what one would do with XSLT if this was an XML API. Jolt - [https://github.com/bazaarvoice/jolt](https://github.com/bazaarvoice/jolt "https://github.com/bazaarvoice/jolt") is a Java library to perform JSON to JSON transformations where the specification is, itself, a JSON document.
 
-Spring Boot does not include support for Jolt processing of the JSON produced by Jackson, but nothing prevents us from adding it (except time and resources, that is), so that’s what we did. In this case, what we need to do is simply return the new version of the API model object and then specify for each version, which transformation specification we want to apply. The transformation specifications, jolt-v1.json and jolt-v2.json, are located in the resources/json-spec/ folder. The syntax is not exactly intuitive but you should be able to see that in v1 of the spec, the related.id field is copied to the output as related_id:
+Spring Boot does not include support for Jolt processing of the JSON produced by Jackson, but nothing prevents us from adding it (except time and resources, that is), so that’s what we did. In this case, what we need to do is simply return the new version of the API model object and then specify for each version, which transformation specification we want to apply. The transformation specifications, jolt-v1.json and jolt-v2.json, are located in the resources/json-spec/ folder. You can see if demonstrated in the controller _org.greeneyed.versioning.demo.controllers.JoltVersioningAPI_:
 
-and in v2, both related.id and related.name are copied following the same hierarchy.
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/JoltVersioningAPI.java?footer=minimal"></script>
+
+The syntax is not exactly intuitive but you should be able to see that in v1 of the spec, the related.id field is copied to the output as related_id:
+
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/resources/json-spec/jolt-v1.json?footer=minimal"></script>
+
+and in v2, both related.id and related.name are copied following the same hierarchy:
+
+<script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/resources/json-spec/jolt-v2.json?footer=minimal"></script>
 
 The good thing with this technique is that the Java code does not need to be “version aware”, so it becomes much simpler. The drawbacks are that the community around the library is not very active, not to say pretty much dead, and that the syntax is pretty convoluted. But we’ve used it successfully in some small projects and the resulting code was cleaner, so we simply wanted to demonstrate that there are other alternatives.
 
@@ -117,6 +131,6 @@ In many cases, you will want to introduce changes in your business code to preve
 
 Extra bonus
 
-The code demonstrating all the techniques is at the Versioning Demo project @ GitHub [https://github.com/Verdoso/VersioningDemo](https://github.com/Verdoso/VersioningDemo "https://github.com/Verdoso/VersioningDemo"), where you will also find a test class that shows how to create a parameterized test with MockMVC.
+Again, the code demonstrating all the techniques is at the Versioning Demo project @ GitHub [https://github.com/Verdoso/VersioningDemo](https://github.com/Verdoso/VersioningDemo "https://github.com/Verdoso/VersioningDemo"), where you will also find a test class that shows how to create a parameterized test with MockMVC.
 
 Happy coding!
