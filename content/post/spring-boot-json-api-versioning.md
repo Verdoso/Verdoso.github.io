@@ -10,7 +10,7 @@ title: Spring Boot JSON API versioning options
 draft: true
 
 ---
-(Image by [OpenClipart-Vectors](https://pixabay.com/users/OpenClipart-Vectors-30363/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1295256) from [Pixabay](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1295256))
+(Image by [Arek Socha](https://pixabay.com/users/qimono-1962238/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1811955) from [Pixabay](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1811955))
 
 One of the common issues when developing an API specification is how to deal with API contract modifications. Hopefully one is very successful and has lots of customers with software clients already using the current version of the spec. so simply dropping the existing version and moving to the new one is not an option, hence the issue.
 
