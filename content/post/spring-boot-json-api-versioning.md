@@ -141,7 +141,7 @@ In many cases, you will want to introduce changes in your business code to preve
 
 ## Extra bonus
 
-Again, the code demonstrating all the techniques is at the Versioning Demo project @ GitHub [https://github.com/Verdoso/VersioningDemo](https://github.com/Verdoso/VersioningDemo "https://github.com/Verdoso/VersioningDemo"), but there you will also find a test class that shows how to create a parameterized test with MockMVC.
+Again, the code with all the techniques is at the [Versioning Demo project @ GitHub](https://github.com/Verdoso/VersioningDemo) where you will also find a test class that shows how to create a parameterized test with MockMVC.
 
 Happy coding!
 
