@@ -119,7 +119,7 @@ In fact, we are using one of those metadata fields (the description) to encode t
 
 Once we have explored the different versions that Jackson offers, we wanted to show a different technique that is pretty similar to what one would do with XSLT if this was an XML API. And for that we can use [Jolt](https://github.com/bazaarvoice/jolt), a Java library to perform JSON to JSON transformations where the specification is, itself, a JSON document.
 
-Spring Boot does not include support for Jolt processing of the JSON produced by Jackson, but nothing prevents us from adding it (except time and resources, that is ;) ), so that’s what we did. In this case, what we need to do is simply return the new version of the API model object and then specify for each version, which transformation specification we want to apply. You can see that demonstrated in the controller [_org.greeneyed.versioning.demo.controllers.JoltVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/JoltVersioningAPI.java):
+Spring Boot does not include support for Jolt processing of the JSON produced by Jackson, but nothing prevents us from adding it (except time and resources, that is ;) ), so that’s what we did (through the class [SummerJoltView](https://github.com/Verdoso/GreenSummer/blob/master/summer-core/src/main/java/org/greeneyed/summer/util/SummerJoltView.java)). In this case, what we need to do is simply return the new version of the API model object and then specify, for each version, which transformation specification we want to apply. You can see that in the controller [_org.greeneyed.versioning.demo.controllers.JoltVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/JoltVersioningAPI.java):
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/JoltVersioningAPI.java?footer=minimal"></script>
 
@@ -131,7 +131,7 @@ and in v2, both related.id and related.name are copied following the same hierar
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/resources/json-spec/jolt-v2.json?footer=minimal"></script>
 
-The good thing with this technique is that the Java code does not need to be “version aware”, so it becomes much simpler. The drawbacks are that the community around the library is not very active, not to say pretty much dead, and that the syntax is pretty convoluted. But we’ve used it successfully in some small projects and the resulting code was cleaner, so we simply wanted to show a different style of solving the problem.
+The good thing with this solution is that the Java code does not need to be “version aware”, so it becomes much simpler. The drawbacks are that the community around the library is not very active, not to say pretty much dead, and that the syntax is pretty convoluted. But we haveve used it successfully in some small projects and the resulting code was cleaner, so we simply wanted to show a different style of solving the problem.
 
 ## Final notes
 
