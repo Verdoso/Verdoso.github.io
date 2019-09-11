@@ -113,7 +113,7 @@ Note that in this case we have included a different version of the API model cla
 
 Json filters allow you to specify what happens in runtime for each field, but, on the other hand, the information that you have in runtime about the field you are deciding upon is pretty limited: Basically the name and some limited metadata.
 
-In fact, we are using one of those metadata fields (the description) to encode the versions we want the field to be included in, but I have to admit it does not feel completely right to use a field for a purpose it was not created for. The alternative, though, is to hardcode the names of fields to include in each version, and that feels even “less right”.
+In fact, we are using one of those metadata fields (the description) to encode the versions we want the field to be included in, but we have to admit it does not feel completely right to use a field for a purpose it was not created for. The alternative, though, is to hardcode the names of the fields to include in each version, and that feels even “less right”.
 
 ## Jolt
 
