@@ -5,7 +5,7 @@ tags:
 - spring boot
 - json
 - versioning
-featured_image: "/uploads/evolution-1295256_640.png"
+featured_image: "/uploads/evolution-1295256_1280.png"
 title: Spring Boot JSON API versioning options
 draft: true
 
