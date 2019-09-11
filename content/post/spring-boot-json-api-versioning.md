@@ -7,7 +7,6 @@ tags:
 - versioning
 featured_image: "/uploads/dna-1811955_1280.jpg"
 title: Spring Boot JSON API versioning options
-draft: true
 
 ---
 (Image by [Arek Socha](https://pixabay.com/users/qimono-1962238/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1811955) from [Pixabay](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1811955))
