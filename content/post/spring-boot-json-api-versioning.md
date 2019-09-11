@@ -131,7 +131,7 @@ and in v2, both related.id and related.name are copied following the same hierar
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/resources/json-spec/jolt-v2.json?footer=minimal"></script>
 
-The good thing with this technique is that the Java code does not need to be “version aware”, so it becomes much simpler. The drawbacks are that the community around the library is not very active, not to say pretty much dead, and that the syntax is pretty convoluted. But we’ve used it successfully in some small projects and the resulting code was cleaner, so we simply wanted to demonstrate that there are other alternatives.
+The good thing with this technique is that the Java code does not need to be “version aware”, so it becomes much simpler. The drawbacks are that the community around the library is not very active, not to say pretty much dead, and that the syntax is pretty convoluted. But we’ve used it successfully in some small projects and the resulting code was cleaner, so we simply wanted to show a different style of solving the problem.
 
 ## Final notes
 
