@@ -97,7 +97,7 @@ So, you just need to create a _MappingJacksonValue_ instance from your original 
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueViewsVersioningAPI.java?footer=minimal"></script>
 
-You can see that the logic and the API model classes are the same as in the previous example. It is just that in this case, we are specifying the view to be used per request, instead of statically per method.
+You can see that the logic and the API model classes are the same as in the previous example. It is just that we are specifying the view to be used per request, instead of statically per method.
 
 ## MappingJacksonValue with JSON Filters
 
