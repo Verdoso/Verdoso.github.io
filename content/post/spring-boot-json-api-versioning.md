@@ -9,8 +9,6 @@ featured_image: "/uploads/dna-1811955_1280.jpg"
 title: Spring Boot JSON API versioning options
 
 ---
-(Image by [Arek Socha](https://pixabay.com/users/qimono-1962238/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1811955) from [Pixabay](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1811955))
-
 One of the common issues when developing an API specification is how to deal with API contract modifications. Hopefully one is very successful and has lots of customers with software clients already using the current version of the spec. so simply dropping the existing version and moving to the new one is not an option, hence the issue.
 
 [Spring Boot](https://spring.io/projects/spring-boot), with its automatic JSON mapping with [Jackson](https://github.com/FasterXML/jackson), is a very productive framework to develop APIs, but one still has to face the problem on how to adapt the code to support several API versions with the same code base.
@@ -145,3 +143,5 @@ Again, the code with all the techniques is at the [Versioning Demo project @ Git
 Happy coding!
 
 PS: Kudos @[gist-it.appspot.com](https://gist-it.appspot.com/) for creating the service to embed files directly from GitHub as "gists". Much appreciated!
+
+(Image by [Arek Socha](https://pixabay.com/users/qimono-1962238/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1811955) from [Pixabay](https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1811955))
