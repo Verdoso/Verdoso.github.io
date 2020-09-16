@@ -74,7 +74,7 @@ We then need to create the XSLT that will be used to process the XML. We place i
 
 {{< gist Verdoso 37c48217b659489af55aa353480061ef>}}
 
-It is a very simple XSLT and we are not using the full power of XSLT 3.0, but let's start simple. Now we update the controller class so it uses the XSLT. What we are doing is telling Spring we are using a specific ModelAndView class (org.greeneyed.summer.config.XsltConfiguration.XsltModelAndView) that needs the name of the view and the root object for our XML.
+It is a very simple XSLT and we are not using the full power of XSLT 3.0, but let's start simple. Now, we update the controller class so it uses the XSLT. What we are doing is telling Spring we are using a specific ModelAndView class (org.greeneyed.summer.config.XsltConfiguration.XsltModelAndView) that needs the name of the view and the root object for our XML.
 
 {{< gist Verdoso 2a6a985d050aaf76dffab4b5b847ab0e>}}
 
@@ -94,23 +94,23 @@ And, bonus point, thanks to being in development mode, you can add the parameter
 
 This lets you check the XML you are using as source when editing the XSLT stylesheet to verify that your paths and attributes names are correct. When devMode is set to false, access to the XML source is restricted for security reasons.
 
-And that’s it. After that it’s just a matter of creating returning the appropriate classes that contain the relevant information for the page you want to display and create the XSLT stylesheets and templates to process them and generate the desired output.
+And that’s it. After that, it’s just a matter of creating and returning the appropriate classes that contain the relevant information for the page you want to display and create the XSLT stylesheets and templates to process them and generate the desired output.
 
 Creating different interfaces reusing the business logic is fairly easy, just make the XSLT name depend on some parameter and you can produce a completely different result (for example, generating XML/RSS instead of HTML). That makes producing two different XML API versions from the same business logic very straight-forward.
 
 ## Final touch: testing
 
-To show the full development cycle of using XML/XSLT with Spring Boot, I’ll show one way how one can test the controller part when using these technologies.
+To show the full development cycle of using XML/XSLT with Spring Boot, I’ll demonstrate one way how one can test the controller part when using these technologies.
 
 We don’t want to have to start the whole application when doing each test, so we will use MockMvc (see [https://spring.io/guides/gs/testing-web/](https://spring.io/guides/gs/testing-web/ "https://spring.io/guides/gs/testing-web/") for more information) to just test the web layer. A sample testing class is this:
 
 {{< gist Verdoso 6a1cf77bc6786f664730a2a22a46b6dd>}}
 
-We have added two test methods, testXMLIsFine() and testHTMLIsFine(), one to test that the XML we are using as origin for the view is generated correctly, and the other to test that the final HTML is correct. Depending on your role or your requirements, you might want to do both or just one of those, but I added them both so you can see how the two approaches work.
+We have added two test methods, testXMLIsFine() and testHTMLIsFine(), one to test that the XML we are using as origin for the view is generated correctly, and the other to test that the final HTML is correct. Depending on your role or your requirements, you might want to do both, or just one of those, but I added them both so you can see how the two approaches work.
 
 Note that the tests just start the web layer of Spring Boot, so they run relatively fast, compared to having to start the whole app.
 
-Also note that, in order to test the HTML, we have used [jsoup](https://jsoup.org/), so we added it as dependency in the final POM. And as we used “showXMLSource=true” in the tests, we need to enable Green Summer XSLT development mode in [src/test/resources/applications-test.properties](https://github.com/Verdoso/xslt_demo/blob/master/src/test/resources/application-test.properties)
+Also note that, in order to test the HTML, we have used [jsoup](https://jsoup.org/), so we added it as a dependency in the final POM. And as we used “showXMLSource=true” in the tests, we need to enable Green Summer XSLT development mode in [src/test/resources/applications-test.properties](https://github.com/Verdoso/xslt_demo/blob/master/src/test/resources/application-test.properties)
 
 You can find all the code in Github in the [Summer XSLT Demo project](https://github.com/Verdoso/xslt_demo).
 
