@@ -5,13 +5,10 @@ tags:
 - spring boot
 - json
 - versioning
-featured_image: ''
-title: Spring Boot JSON API versioning
-draft: true
+featured_image: "/uploads/dna-1811955_1280.jpg"
+title: Spring Boot JSON API versioning options
 
 ---
-# Spring Boot JSON API versioning options
-
 One of the common issues when developing an API specification is how to deal with API contract modifications. Hopefully one is very successful and has lots of customers with software clients already using the current version of the spec. so simply dropping the existing version and moving to the new one is not an option, hence the issue.
 
 [Spring Boot](https://spring.io/projects/spring-boot), with its automatic JSON mapping with [Jackson](https://github.com/FasterXML/jackson), is a very productive framework to develop APIs, but one still has to face the problem on how to adapt the code to support several API versions with the same code base.
@@ -97,7 +94,7 @@ So, you just need to create a _MappingJacksonValue_ instance from your original 
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueViewsVersioningAPI.java?footer=minimal"></script>
 
-You can see that the logic and the API model classes are the same as in the previous example. It is just that in this case, we are specifying the view to be used per request, instead of statically per method.
+You can see that the logic and the API model classes are the same as in the previous example. It is just that we are specifying the view to be used per request, instead of statically per method.
 
 ## MappingJacksonValue with JSON Filters
 
@@ -105,21 +102,21 @@ Jackson also provides a different way of specifying which fields we want seriali
 
 In this case we need to specify the class/instance, the filter, that will decide what is going to happen to each field. Why use that instead of _@JsonView_ at the model? Well, the annotation is static, it allows you to specify just one value, and it is specified at compile time, so there’s nothing in runtime you can do about it. So, if you need more than that, you have the alternative of using JSON filters.
 
-The good news is that Spring also supports specifying the filter instance to be used through the _MappingJacksonValue_ class that we used in the last technique. That’s why the code demonstrating this technique is pretty similar to the previous one, except this time we are setting a different PropertyFilter instance depending on the version instead of a class. You can see how it is being done at the [_org.greeneyed.versioning.demo.controllers.MappingJacksonValueFilterVersioningAPI_ ](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueFilterVersioningAPI.java)controller class:
+The good news is that Spring also supports specifying the filter instance to be used through the _MappingJacksonValue_ class that we used in the last technique. That is the reason why the code implementing this approach is pretty similar to the previous one, except this time, instead of a class, we are setting a different PropertyFilter instance depending on the version. You can see how it is done at the [_org.greeneyed.versioning.demo.controllers.MappingJacksonValueFilterVersioningAPI_ ](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueFilterVersioningAPI.java)controller class:
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/MappingJacksonValueFilterVersioningAPI.java?footer=minimal"></script>
 
 Note that in this case we have included a different version of the API model classes just to show that we are not using _@JsonView_ annotations.
 
-Json filters allow you to specify what happens in runtime for each field, but, on the other hand, the information that you have in runtime about the field you are deciding upon is pretty limited: Basically the name and some limited metadata. 
+Json filters allow you to specify what happens in runtime for each field, but, on the other hand, the information that you have in runtime about the field you are deciding upon is pretty limited: Basically the name and some limited metadata.
 
-In fact, we are using one of those metadata fields (the description) to encode the versions we want the field to be included in, but I have to admit it does not feel completely right to use a field for a purpose it was not created for. The alternative, though, is to hardcode the names of fields to include in each version, and that feels even “less right”.
+In fact, we are using one of those metadata fields (the description) to encode the versions we want the field to be included in, but we have to admit it does not feel completely right to use a field for a purpose it was not created for. The alternative, though, is to hardcode the names of the fields to include in each version, and that feels even “less right”.
 
 ## Jolt
 
 Once we have explored the different versions that Jackson offers, we wanted to show a different technique that is pretty similar to what one would do with XSLT if this was an XML API. And for that we can use [Jolt](https://github.com/bazaarvoice/jolt), a Java library to perform JSON to JSON transformations where the specification is, itself, a JSON document.
 
-Spring Boot does not include support for Jolt processing of the JSON produced by Jackson, but nothing prevents us from adding it (except time and resources, that is ;) ), so that’s what we did. In this case, what we need to do is simply return the new version of the API model object and then specify for each version, which transformation specification we want to apply. You can see that demonstrated in the controller [_org.greeneyed.versioning.demo.controllers.JoltVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/JoltVersioningAPI.java):
+Spring Boot does not include support for Jolt processing of the JSON produced by Jackson, but nothing prevents us from adding it (except time and resources, that is ;) ), so that’s what we did (through the class [SummerJoltView](https://github.com/Verdoso/GreenSummer/blob/master/summer-core/src/main/java/org/greeneyed/summer/util/SummerJoltView.java)). In this case, what we need to do is simply return the new version of the API model object and then specify, for each version, which transformation specification we want to apply. You can see that in the controller [_org.greeneyed.versioning.demo.controllers.JoltVersioningAPI_](https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/JoltVersioningAPI.java):
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/java/org/greeneyed/versioning/demo/controllers/JoltVersioningAPI.java?footer=minimal"></script>
 
@@ -131,7 +128,7 @@ and in v2, both related.id and related.name are copied following the same hierar
 
 <script src="https://gist-it.appspot.com/https://github.com/Verdoso/VersioningDemo/blob/master/src/main/resources/json-spec/jolt-v2.json?footer=minimal"></script>
 
-The good thing with this technique is that the Java code does not need to be “version aware”, so it becomes much simpler. The drawbacks are that the community around the library is not very active, not to say pretty much dead, and that the syntax is pretty convoluted. But we’ve used it successfully in some small projects and the resulting code was cleaner, so we simply wanted to demonstrate that there are other alternatives.
+The good thing with this solution is that the Java code does not need to be “version aware”, so it becomes much simpler. The drawbacks are that the community around the library is not very active, not to say pretty much dead, and that the syntax is pretty convoluted. But we haveve used it successfully in some small projects and the resulting code was cleaner, so we simply wanted to show a different style of solving the problem.
 
 ## Final notes
 
@@ -141,6 +138,10 @@ In many cases, you will want to introduce changes in your business code to preve
 
 ## Extra bonus
 
-Again, the code demonstrating all the techniques is at the Versioning Demo project @ GitHub [https://github.com/Verdoso/VersioningDemo](https://github.com/Verdoso/VersioningDemo "https://github.com/Verdoso/VersioningDemo"), but there you will also find a test class that shows how to create a parameterized test with MockMVC.
+Again, the code with all the techniques is at the [Versioning Demo project @ GitHub](https://github.com/Verdoso/VersioningDemo) where you will also find a test class that shows how to create a parameterized test with MockMVC.
 
 Happy coding!
+
+PS: Kudos @[gist-it.appspot.com](https://gist-it.appspot.com/) for creating the service to embed files directly from GitHub as "gists". Much appreciated!
+
+(Image by [Arek Socha](https://pixabay.com/users/qimono-1962238/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1811955) from [Pixabay](https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1811955))
