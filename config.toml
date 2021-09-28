@@ -1,6 +1,6 @@
 DefaultContentLanguage = "en"
 MetaDataFormat = "yaml"
-Paginate = 15
+Paginate = 10
 SectionPagesMenu = "main"
 baseURL = "https://www.greeneyed.org/"
 disqusShortname = "greeneyed"
