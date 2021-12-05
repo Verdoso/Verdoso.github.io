@@ -1,0 +1,131 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>GreenEyed's | Spring Boot, MyBatis, multiple datasources and multiple mappers, all together holding hands</title>
+<meta name=HandheldFriendly content="True">
+<meta name=MobileOptimized content="320">
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<meta name=generator content="Hugo 0.89.4">
+<meta name=ROBOTS content="NOINDEX, NOFOLLOW">
+<link href=/dist/css/app.d98f2eb6bcd1eaedb7edf166bd16af26.css rel=stylesheet>
+<link rel=stylesheet href=/css/greeneyed.css>
+<meta property="og:title" content="Spring Boot, MyBatis, multiple datasources and multiple mappers, all together holding hands">
+<meta property="og:description" content="One of the issues with Spring Boot that I have come across a couple of times and that are usually a bit painful to solve is how to configure multiple datasources and mappers with MyBatis. I have always had to browse the web, check different sources and try different examples while fighting unclear error messages until I get it right. And then the next time configuration has changed in some subtle way either in MyBatis or Spring Boot and it’s all over again.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.greeneyed.org/post/spring-boot-mybatis-multiple-datasources/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2017-05-22T22:00:00+00:00">
+<meta property="article:modified_time" content="2017-05-22T22:00:00+00:00">
+<meta itemprop=name content="Spring Boot, MyBatis, multiple datasources and multiple mappers, all together holding hands">
+<meta itemprop=description content="One of the issues with Spring Boot that I have come across a couple of times and that are usually a bit painful to solve is how to configure multiple datasources and mappers with MyBatis. I have always had to browse the web, check different sources and try different examples while fighting unclear error messages until I get it right. And then the next time configuration has changed in some subtle way either in MyBatis or Spring Boot and it’s all over again."><meta itemprop=datePublished content="2017-05-22T22:00:00+00:00">
+<meta itemprop=dateModified content="2017-05-22T22:00:00+00:00">
+<meta itemprop=wordCount content="533">
+<meta itemprop=keywords content="Java,Spring Boot,MyBatis,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Spring Boot, MyBatis, multiple datasources and multiple mappers, all together holding hands">
+<meta name=twitter:description content="One of the issues with Spring Boot that I have come across a couple of times and that are usually a bit painful to solve is how to configure multiple datasources and mappers with MyBatis. I have always had to browse the web, check different sources and try different examples while fighting unclear error messages until I get it right. And then the next time configuration has changed in some subtle way either in MyBatis or Spring Boot and it’s all over again.">
+</head>
+<body class="ma0 avenir bg-near-white">
+<header>
+<div class=bg-dark-green>
+<nav class="pv3 ph3 ph4-ns" role=navigation>
+<div class="flex-l justify-between items-center center">
+<a href=https://www.greeneyed.org/ class="f3 fw2 hover-white no-underline white-90 dib">
+GreenEyed's
+</a>
+<div class="flex-l items-center">
+<ul class="pl0 mr3">
+<li class="list f5 f4-ns fw4 dib pr3">
+<a class="hover-white no-underline white-90" href=/about/ title="About page">
+About
+</a>
+</li>
+<li class="list f5 f4-ns fw4 dib pr3">
+<a class="hover-white no-underline white-90" href=/post/ title="Posts page">
+Posts
+</a>
+</li>
+</ul>
+<a href=https://twitter.com/greeneyed_dlj target=_blank class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel=noopener aria-label="follow on Twitter——Opens in a new window"><svg height="32" style="enable-background:new 0 0 67 67" viewBox="0 0 67 67" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167 22.283c-2.619.953-4.274 3.411-4.086 6.101l.063 1.038-1.048-.127c-3.813-.487-7.145-2.139-9.974-4.915l-1.383-1.377-.356 1.017c-.754 2.267-.272 4.661 1.299 6.271.838.89.649 1.017-.796.487-.503-.169-.943-.296-.985-.233-.146.149.356 2.076.754 2.839.545 1.06 1.655 2.097 2.871 2.712l1.027.487-1.215.021c-1.173.0-1.215.021-1.089.467.419 1.377 2.074 2.839 3.918 3.475l1.299.444-1.131.678c-1.676.976-3.646 1.526-5.616 1.568C19.775 43.256 19 43.341 19 43.405c0 .211 2.557 1.397 4.044 1.864 4.463 1.377 9.765.783 13.746-1.568 2.829-1.673 5.657-5 6.978-8.221.713-1.716 1.425-4.851 1.425-6.354.0-.975.063-1.102 1.236-2.267.692-.678 1.341-1.419 1.467-1.631.21-.403.188-.403-.88-.043-1.781.636-2.033.551-1.152-.402.649-.678 1.425-1.907 1.425-2.267.0-.063-.314.042-.671.233-.377.212-1.215.53-1.844.72l-1.131.361-1.027-.7c-.566-.381-1.361-.805-1.781-.932C39.766 21.902 38.131 21.944 37.167 22.283zM33 64C16.432 64 3 50.569 3 34S16.432 4 33 4s30 13.431 30 30S49.568 64 33 64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+<span class=new-window><svg height="8" style="enable-background:new 0 0 1000 1000" viewBox="0 0 1e3 1e3" width="8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M598 128h298v298h-86V274L392 692l-60-60 418-418H598v-86zM810 810V512h86v298c0 46-40 86-86 86H214c-48 0-86-40-86-86V214c0-46 38-86 86-86h298v86H214v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+</span></a>
+<a href=https://www.linkedin.com/in/dlopezj/ target=_blank class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel=noopener aria-label="follow on LinkedIn——Opens in a new window"><svg height="32" style="enable-background:new 0 0 65 65" viewBox="0 0 65 65" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M50.837 48.137V36.425c0-6.275-3.35-9.195-7.816-9.195-3.604.0-5.219 1.983-6.119 3.374V27.71h-6.79c.09 1.917.0 20.427.0 20.427h6.79V36.729c0-.609.044-1.219.224-1.655.49-1.22 1.607-2.483 3.482-2.483 2.458.0 3.44 1.873 3.44 4.618v10.929H50.837zM22.959 24.922c2.367.0 3.842-1.57 3.842-3.531-.044-2.003-1.475-3.528-3.797-3.528s-3.841 1.524-3.841 3.528c0 1.961 1.474 3.531 3.753 3.531H22.959zM34 64C17.432 64 4 50.568 4 34 4 17.431 17.432 4 34 4s30 13.431 30 30c0 16.568-13.432 30-30 30zM26.354 48.137V27.71h-6.789v20.427h6.789z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+<span class=new-window><svg height="8" style="enable-background:new 0 0 1000 1000" viewBox="0 0 1e3 1e3" width="8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M598 128h298v298h-86V274L392 692l-60-60 418-418H598v-86zM810 810V512h86v298c0 46-40 86-86 86H214c-48 0-86-40-86-86V214c0-46 38-86 86-86h298v86H214v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+</span></a>
+<a href=https://github.com/Verdoso/ target=_blank class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel=noopener aria-label="follow on Github——Opens in a new window"><svg height="32" style="enable-background:new 0 0 512 512" viewBox="0 0 512 512" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M256 32C132.3 32 32 134.8 32 261.7c0 101.5 64.2 187.5 153.2 217.9 11.2 2.1 15.3-5 15.3-11.1.0-5.5-.2-19.9-.3-39.1-62.3 13.9-75.5-30.8-75.5-30.8-10.2-26.5-24.9-33.6-24.9-33.6-20.3-14.3 1.5-14 1.5-14 22.5 1.6 34.3 23.7 34.3 23.7 20 35.1 52.4 25 65.2 19.1 2-14.8 7.8-25 14.2-30.7-49.7-5.8-102-25.5-102-113.5.0-25.1 8.7-45.6 23-61.6-2.3-5.8-10-29.2 2.2-60.8.0.0 18.8-6.2 61.6 23.5 17.9-5.1 37-7.6 56.1-7.7 19 .1 38.2 2.6 56.1 7.7 42.8-29.7 61.5-23.5 61.5-23.5 12.2 31.6 4.5 55 2.2 60.8 14.3 16.1 23 36.6 23 61.6.0 88.2-52.4 107.6-102.3 113.3 8 7.1 15.2 21.1 15.2 42.5.0 30.7-.3 55.5-.3 63 0 6.1 4 13.3 15.4 11C415.9 449.1 480 363.1 480 261.7 480 134.8 379.7 32 256 32z"/></svg>
+<span class=new-window><svg height="8" style="enable-background:new 0 0 1000 1000" viewBox="0 0 1e3 1e3" width="8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M598 128h298v298h-86V274L392 692l-60-60 418-418H598v-86zM810 810V512h86v298c0 46-40 86-86 86H214c-48 0-86-40-86-86V214c0-46 38-86 86-86h298v86H214v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+</span></a>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main class=pb7 role=main>
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+<header class="mt4 w-100">
+<p class="f6 b helvetica tracked">
+POSTS
+</p>
+<h1 class="f1 athelas mb1">Spring Boot, MyBatis, multiple datasources and multiple mappers, all together holding hands</h1>
+<time class="f6 mv4 dib tracked" datetime=2017-05-22T22:00:00Z>May 22, 2017</time>
+<span class="f6 mv4 dib tracked"> - 3 minutes read</span>
+<span class="f6 mv4 dib tracked"> - 533 words</span>
+</header>
+<section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>One of the issues with Spring Boot that I have come across a couple of times and that are usually a bit painful to solve is how to configure multiple datasources and mappers with MyBatis. I have always had to browse the web, check different sources and try different examples while fighting unclear error messages until I get it right. And then the next time configuration has changed in some subtle way either in MyBatis or Spring Boot and it’s all over again. Duh! So, now that I found another working solution, I wanted to share it in case it can help other developers going through the same pain. In this case, I’ll show how it’s done using a pure Java configuration approach instead of XML.</p>
+<p>First, make sure you include the dependencies for the datasource implementation, in my case HikaryCP, and mybatis-spring-boot-starter. As I use HikaryCP instead of the default Tomcat datasource and I’m using Jetty instead of Tomcat, I have to exclude the Tomcat dependencies from mybatis-spring-boot-starter. Hence:</p>
+<script type=application/javascript src=https://gist.github.com/Verdoso/a1a9e6ca5f0325ed708d62737e598eaf.js></script>
+<p>In order to use more than one datasource you cannot relay on Spring Boot’s datasource autoconfiguration, but you still can set them up very easily using @ConfigurationProperties.</p>
+<script type=application/javascript src=https://gist.github.com/Verdoso/bf1f9c4613f042b612341966daa5117e.js></script>
+<p>Note that the @Primary annotation is specified so the elements that require the default datasource do not complain about having more than one bean to choose from.</p>
+<p>You can then set up both datasources like this in your application.yml:</p>
+<script type=application/javascript src=https://gist.github.com/Verdoso/fffdb9330bf5a68e649a9600b55a3e65.js></script>
+<p>Now here it comes the tricky part, you have to configure more than one session with MyBatis and also configure the different mappers so each one use the right MyBatis session. This is the part that I have had to change a couple of times, depending on the Spring Boot and Mybatis versions, as there are different ways one can configure a Mapper in MyBatis and depending on the order you set up things, you will get all your mappers to use the primary datasource no matter what. You can see that the trick is that, in order to create each SqlSessionFactoryBean, we autowire each datasource specifying the name, and then we add each Mapper class directly to each SqlSessionFactory. We then create a MapperFactory for each Mapper using the right SqlSessionFactory, again specified by name. In my case, each Mapper interface has its corresponding .xml mapper file in resources but I suppouse annotation based mappers will work as well. Specifying the mapper twice seems like overkill, but you can try yourself what happens if you don’t do it*.</p>
+<script type=application/javascript src=https://gist.github.com/Verdoso/9e89bf986ce68371c5142f7189052c98.js></script>
+<p>After all of this, simply autowire the mapper class on your components and each one should connect to a different database.</p>
+<p>To reiterate, *this works now using Spring Boot version 1.5.3 and MyBatis Spring Boot starter version 1.3.0. I hope it works for you as well, but if it does not, I would recommend trying to configure the Mappers differently like creating the Mapper beans directly, or using MapperScannerConfigurer beans (this one used to work for me, but I could not get it to work with the aforementioned versions).</p>
+<p>At least, I hope it gave you some hints about where to start tweaking.<br>
+Happy coding!<br>
+D.</p>
+<p>Edit February 2018: Added a project to Github demonstrating the technique: <a href=https://github.com/Verdoso/multi-mybatis-demo title=https://github.com/Verdoso/multi-mybatis-demo>https://github.com/Verdoso/multi-mybatis-demo</a></p>
+<ul class=pa0>
+<li class=list>
+<a href=/tags/java class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Java</a>
+</li>
+<li class=list>
+<a href=/tags/spring-boot class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Spring Boot</a>
+</li>
+<li class=list>
+<a href=/tags/mybatis class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">MyBatis</a>
+</li>
+</ul>
+<div class=mt6>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//greeneyed.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</section>
+<aside class="w-30-l mt6-l">
+</aside>
+</article>
+</main>
+<footer class="bg-dark-green bottom-0 w-100 pa3" role=contentinfo>
+<div class="flex justify-between">
+<a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href=https://www.greeneyed.org/>
+&copy; 2021 GreenEyed's
+</a>
+<div>
+<a href=https://twitter.com/greeneyed_dlj target=_blank class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel=noopener aria-label="follow on Twitter——Opens in a new window"><svg height="32" style="enable-background:new 0 0 67 67" viewBox="0 0 67 67" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167 22.283c-2.619.953-4.274 3.411-4.086 6.101l.063 1.038-1.048-.127c-3.813-.487-7.145-2.139-9.974-4.915l-1.383-1.377-.356 1.017c-.754 2.267-.272 4.661 1.299 6.271.838.89.649 1.017-.796.487-.503-.169-.943-.296-.985-.233-.146.149.356 2.076.754 2.839.545 1.06 1.655 2.097 2.871 2.712l1.027.487-1.215.021c-1.173.0-1.215.021-1.089.467.419 1.377 2.074 2.839 3.918 3.475l1.299.444-1.131.678c-1.676.976-3.646 1.526-5.616 1.568C19.775 43.256 19 43.341 19 43.405c0 .211 2.557 1.397 4.044 1.864 4.463 1.377 9.765.783 13.746-1.568 2.829-1.673 5.657-5 6.978-8.221.713-1.716 1.425-4.851 1.425-6.354.0-.975.063-1.102 1.236-2.267.692-.678 1.341-1.419 1.467-1.631.21-.403.188-.403-.88-.043-1.781.636-2.033.551-1.152-.402.649-.678 1.425-1.907 1.425-2.267.0-.063-.314.042-.671.233-.377.212-1.215.53-1.844.72l-1.131.361-1.027-.7c-.566-.381-1.361-.805-1.781-.932C39.766 21.902 38.131 21.944 37.167 22.283zM33 64C16.432 64 3 50.569 3 34S16.432 4 33 4s30 13.431 30 30S49.568 64 33 64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+<span class=new-window><svg height="8" style="enable-background:new 0 0 1000 1000" viewBox="0 0 1e3 1e3" width="8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M598 128h298v298h-86V274L392 692l-60-60 418-418H598v-86zM810 810V512h86v298c0 46-40 86-86 86H214c-48 0-86-40-86-86V214c0-46 38-86 86-86h298v86H214v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+</span></a>
+<a href=https://www.linkedin.com/in/dlopezj/ target=_blank class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel=noopener aria-label="follow on LinkedIn——Opens in a new window"><svg height="32" style="enable-background:new 0 0 65 65" viewBox="0 0 65 65" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M50.837 48.137V36.425c0-6.275-3.35-9.195-7.816-9.195-3.604.0-5.219 1.983-6.119 3.374V27.71h-6.79c.09 1.917.0 20.427.0 20.427h6.79V36.729c0-.609.044-1.219.224-1.655.49-1.22 1.607-2.483 3.482-2.483 2.458.0 3.44 1.873 3.44 4.618v10.929H50.837zM22.959 24.922c2.367.0 3.842-1.57 3.842-3.531-.044-2.003-1.475-3.528-3.797-3.528s-3.841 1.524-3.841 3.528c0 1.961 1.474 3.531 3.753 3.531H22.959zM34 64C17.432 64 4 50.568 4 34 4 17.431 17.432 4 34 4s30 13.431 30 30c0 16.568-13.432 30-30 30zM26.354 48.137V27.71h-6.789v20.427h6.789z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+<span class=new-window><svg height="8" style="enable-background:new 0 0 1000 1000" viewBox="0 0 1e3 1e3" width="8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M598 128h298v298h-86V274L392 692l-60-60 418-418H598v-86zM810 810V512h86v298c0 46-40 86-86 86H214c-48 0-86-40-86-86V214c0-46 38-86 86-86h298v86H214v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+</span></a>
+<a href=https://github.com/Verdoso/ target=_blank class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel=noopener aria-label="follow on Github——Opens in a new window"><svg height="32" style="enable-background:new 0 0 512 512" viewBox="0 0 512 512" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M256 32C132.3 32 32 134.8 32 261.7c0 101.5 64.2 187.5 153.2 217.9 11.2 2.1 15.3-5 15.3-11.1.0-5.5-.2-19.9-.3-39.1-62.3 13.9-75.5-30.8-75.5-30.8-10.2-26.5-24.9-33.6-24.9-33.6-20.3-14.3 1.5-14 1.5-14 22.5 1.6 34.3 23.7 34.3 23.7 20 35.1 52.4 25 65.2 19.1 2-14.8 7.8-25 14.2-30.7-49.7-5.8-102-25.5-102-113.5.0-25.1 8.7-45.6 23-61.6-2.3-5.8-10-29.2 2.2-60.8.0.0 18.8-6.2 61.6 23.5 17.9-5.1 37-7.6 56.1-7.7 19 .1 38.2 2.6 56.1 7.7 42.8-29.7 61.5-23.5 61.5-23.5 12.2 31.6 4.5 55 2.2 60.8 14.3 16.1 23 36.6 23 61.6.0 88.2-52.4 107.6-102.3 113.3 8 7.1 15.2 21.1 15.2 42.5.0 30.7-.3 55.5-.3 63 0 6.1 4 13.3 15.4 11C415.9 449.1 480 363.1 480 261.7 480 134.8 379.7 32 256 32z"/></svg>
+<span class=new-window><svg height="8" style="enable-background:new 0 0 1000 1000" viewBox="0 0 1e3 1e3" width="8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M598 128h298v298h-86V274L392 692l-60-60 418-418H598v-86zM810 810V512h86v298c0 46-40 86-86 86H214c-48 0-86-40-86-86V214c0-46 38-86 86-86h298v86H214v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+</span></a>
+</div>
+</div>
+</footer>
+<script src=/dist/js/app.3fc0f988d21662902933.js></script>
+</body>
+</html>
