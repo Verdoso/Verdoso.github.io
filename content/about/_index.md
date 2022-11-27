@@ -1,7 +1,7 @@
 ---
 title: About
 subtitle: ''
-featured_image: ''
+featured_image: '/images/bellagio.jpg'
 date: 2019-05-18T22:00:00.000+00:00
 tags: []
 
