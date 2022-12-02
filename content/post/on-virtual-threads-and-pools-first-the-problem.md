@@ -1,5 +1,5 @@
 ---
-date: 2022-12-02T13:20:24Z
+date: 
 tags: []
 featured_image: ''
 title: 'On (virtual) threads and pools:  First, the problem'
@@ -11,7 +11,7 @@ However, beware! We should not make the mistake of immediately assuming that giv
 
 For example, to prevent a resource from being “overwhelmed” if we know it is not prepared to handle more than a certain level of simultaneous requests. Yes, it might not be the ideal approach, as we are killing two birds with one stone (controlling concurrency and preventing the creation of too many heavy native threads) but that is how many pieces of software currently do it.
 
-With the new virtual threads, why not send all the requests anyway and let the resources handle & queue them as they see fit? Because doing so would put the control, the responsibility, and the burden at the resource. And that might not be convenient at all. The resource might not be in our control, and then it might simply refuse to do it, or it might be unable to carry those tasks; or, if it did carry them, we would lose control over how it is done, so we might not be happy with the results anyway. If the resource were in our hands, at a minimum we would need first to make sure that it is able to handle the load, or we would have to modify it so it is able to handle it.
+With the new virtual threads, why not send all the requests anyway and let the resources handle & queue them as they see fit? Because **doing so would put the control, the responsibility, and the burden at the resource**. And that might not be convenient at all. The resource might not be in our control, and then it might simply refuse to do it, or it might be unable to carry those tasks; or, if it did carry them, we would lose control over how it is done, so we might not be happy with the results anyway. If the resource were in our hands, at a minimum we would need first to make sure that it is able to handle the load, or we would have to modify it so it is able to handle it.
 
 Let’s see some examples, based on real-life code that I have had to work with, to see why a direct translation of pools of threads to simply spawning virtual threads is not an appropriate strategy.
 
