@@ -28,6 +28,7 @@ fields:
   default: []
   label: Tags
 pages:
+- content/VirtualThreadsI.md
 - content/post/clustered-spring-boot-services-with-hazelcast-consul-stateful-stateless.md
 - content/post/configuring-multiple-ttl-caches-in-spring-boot-dinamically.md
 - content/post/easily-connecting-your-spring-boot-applications-to-the-elastic-stack-with-log4j2.md
@@ -39,4 +40,3 @@ pages:
 - content/post/springboot-maven-jenkins-git-how-to-identify-your-release-automagically.md
 - content/post/x-factor-apps-using-the-spring-boot-ecosystem-an-overview.md
 - content/post/xml-xslt-3-0-development-with-spring-boot-saxon-and-summer.md
-- content/test.md
