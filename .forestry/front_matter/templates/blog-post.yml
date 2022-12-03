@@ -5,7 +5,7 @@ fields:
 - name: featured_image
   type: file
   config:
-    maxSize: 250
+    maxSize: 64
   label: Featured image
 - name: title
   type: text
