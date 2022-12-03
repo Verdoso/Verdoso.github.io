@@ -3,6 +3,7 @@ date: 2022-12-02T13:45:03Z
 tags: []
 featured_image: ''
 title: 'On (virtual) threads and pools:  First, the problem'
+draft: true
 
 ---
 Much has already been written about the new feature known as virtual threads, introduced as a preview in Java 19, and about the changes that this feature will enable. Among those, we can find that **the new virtual threads are light**, as opposed to the regular ones tied to native threads, so there is no need to cache or pool them. So far, so good.
