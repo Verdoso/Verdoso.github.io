@@ -32,7 +32,7 @@ Those are just a couple of examples of “not too uncommon” situations where d
 
 {{< annotation >}}We have to be careful when moving to virtual threads, else we might _DoS_ some of the services in use!{{< /annotation >}}
 
-So, **does that mean we should skip virtual threads? No**, what it means is that we should make sure that if we need to control the level of concurrency of our tasks, we keep being in control. That we can accomplish by using the good ol’ concurrency mechanisms that Java provides, for example: semaphores, and with a little code reuse, we can simplify the task and create a good candidate to replace our thread pools. In the next section I'll show an example of how we can implement such a tool.
+So, **does that mean we should skip virtual threads? No**, what it means is that we should make sure that, if we need to control the level of concurrency of our tasks, we do so. We can accomplish that by using the good ol’ concurrency mechanisms that Java provides, for example: semaphores, and with a little code reuse, we can simplify the task and create a good candidate to replace our thread pools. In the next section I'll show an example of how we can implement such a tool.
 
 ## Controlling the level concurrency with virtual threads
 We have talked about why it is important to make the migration to virtual threads without losing control of how much load we are causing with our tasks. Now, we will explain how to do so, using the concurrency mechanisms provided by the language itself.
