@@ -28,7 +28,7 @@ Let’s see some examples, based on real-life code that I have had to work with,
 
 3. I worked for some time in a B2B accommodation engine, designing the API. One of the things that we had in place was an API Gateway, to control customers who would pay a fee depending on the number of requests that they were allowed to make in a given interval of time. If they controlled the number of requests sent at their side, they could decide to queue the ones over their allotted quota. If they decided to simply send all their requests along, the API Gateway would simply block the ones over their quota, which was a loss for both parties.
 
-Those are just a couple of examples of “not too uncommon” situations where developers use nowadays a pool of threads to control the level of concurrency. {{< highlighted >}}If we simply substitute pools of threads with the new VirtualThreadPerTaskExecutor, we are going to _DoS_ (Denial of Service attack) some our services{{< /highlighted >}}.
+Those are just a couple of examples of “not too uncommon” situations where developers use nowadays a pool of threads to control the level of concurrency. {{< highlighted >}}If we simply substitute pools of threads with the new _VirtualThreadPerTaskExecutor_, we are going to _DoS_ (Denial of Service attack) some our services{{< /highlighted >}}.
 
 {{< annotation >}}We have to be careful when moving to virtual threads, else we might _DoS_ some of the services in use!{{< /annotation >}}
 
