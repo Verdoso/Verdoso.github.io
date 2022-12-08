@@ -1,0 +1,2 @@
+{{- $opt := .Get "option" | default "yellow" -}}
+<span class="highlight-{{$opt}}">{{ .Inner | markdownify }}</span>

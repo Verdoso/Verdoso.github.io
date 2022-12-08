@@ -31,9 +31,78 @@ article.mw8 {
 
     article .tc-l {
         text-align: inherit;
-    }    
+    }
 
     .w-two-thirds-l {
         width: 80%;
-    }    
+    }
+}
+
+.highlight-red {
+    color: black;
+    border-radius: 1em 0 1em 0;
+    background-image: linear-gradient(-100deg,
+            rgba(255, 20, 0, 0.2),
+            rgba(255, 20, 0, 0.7) 95%,
+            rgba(255, 20, 0, 0.1));
+    padding-left: 0.5em;
+    margin-left: -0.25em;
+}
+
+.highlight-yellow {
+    color: black;
+    border-radius: 1em 0 1em 0;
+    background-image: linear-gradient(-100deg,
+            rgba(255, 224, 0, 0.2),
+            rgba(255, 224, 0, 0.7) 95%,
+            rgba(255, 224, 0, 0.1));
+    padding-left: 0.5em;
+    margin-left: -0.25em;
+}
+
+.highlight-green {
+    color: black;
+    border-radius: 1em 0 1em 0;
+    background-image: linear-gradient(-100deg,
+            rgba(0, 255, 20, 0.2),
+            rgba(0, 255, 20, 0.7) 95%,
+            rgba(0, 255, 20, 0.1));
+    padding-left: 0.5em;
+    margin-left: -0.25em;
+}
+
+.highlight-blue {
+    color: black;
+    border-radius: 1em 0 1em 0;
+    background-image: linear-gradient(-100deg,
+            rgba(0, 20, 255, 0.2),
+            rgba(0, 20, 255, 0.7) 95%,
+            rgba(0, 20, 255, 0.1));
+    padding-left: 0.5em;
+    margin-left: -0.25em;
+}
+
+/* Koenig — blockquote 
+–––––––––––––––––––––––––––––––––––––––––––––––––––– */
+blockquote.remark {
+    font-size: 40px;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 55px;
+    border: none;
+}
+
+blockquote.remark::before {
+    font-size: 120px;
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    content: '"';
+    color: #137752;
+}
+
+blockquote.remark cite {
+    font-size: 25px;
+    font-style: normal;
 }
