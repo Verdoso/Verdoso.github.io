@@ -4,7 +4,7 @@ tags:
 - java
 - virtual threads
 featured_image: "/uploads/loom-g85da6e78d_640.jpg"
-title: 'On (virtual) threads and pools'
+title: 'On Java (virtual) threads and pools'
 
 ---
 
