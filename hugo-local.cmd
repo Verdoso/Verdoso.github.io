@@ -1,1 +1,1 @@
-c:\hugo server -D -d public
+hugo server -D -d public
